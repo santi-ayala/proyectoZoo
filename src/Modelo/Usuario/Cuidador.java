@@ -1,4 +1,4 @@
 package Modelo.Usuario;
 
-public class Cuidador {
+public class Cuidador extends Empleado{
 }

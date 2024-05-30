@@ -1,4 +1,4 @@
 package Modelo.Usuario;
 
-public class Vendedor {
+public class Vendedor extends Empleado{
 }

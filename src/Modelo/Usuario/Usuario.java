@@ -4,7 +4,10 @@ public class Usuario {
 
     private String usuario;
 
-    private Enum tipo;
+    private String contraseña;
+
+    //private Enum tipo;
+
 
 
 
