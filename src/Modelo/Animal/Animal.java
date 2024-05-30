@@ -6,7 +6,7 @@ public class Animal {
 
     //Atributos
     private String especie;
-    private String Habitat;
+    private String habitat;
     private int cantidadVisitas;
     private Boolean salud;
     private int edad;
@@ -16,11 +16,11 @@ public class Animal {
     //Constructores
     public Animal(String observaciones) {
         this.especie =  ; //json
-        Habitat = ;//json
+        this.dieta = ;//json
+        habitat = ;//json
         this.cantidadVisitas = visitas();
         this.salud = estadoSalud();
         this.edad = edadRandom();
-        this.dieta = ;//json
         this.observaciones = observaciones ;
     }
 
@@ -32,10 +32,10 @@ public class Animal {
         this.especie = especie;
     }
     public String getHabitat() {
-        return Habitat;
+        return habitat;
     }
     public void setHabitat(String habitat) {
-        Habitat = habitat;
+        habitat = habitat;
     }
     public int getCantidadVisitas() {
         return cantidadVisitas;
@@ -83,6 +83,8 @@ public class Animal {
         Random random =new Random();
         return random.nextInt(50) + 1;
     }
+
+
 
 
 }

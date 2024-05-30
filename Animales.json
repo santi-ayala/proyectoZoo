@@ -1,0 +1,69 @@
+[
+  {
+    "especie": "Leon",
+    "dieta": "Carnívoro",
+    "habitat": "Llanuras"
+  } ,
+  {
+    "especie": "Elefante",
+    "dieta": "Herbívoro",
+    "habitat": "Llanuras"
+  },
+  {
+    "especie": "Ballena azul",
+    "dieta": "Carnívoro",
+    "habitat": "Llanuras"
+  }
+  {
+    "especie": "Mono",
+    "dieta": "Onmívoro",
+    "habitat": "Selva"
+  }
+  {
+    "especie": "Jaguar",
+    "dieta": "Carnívoro",
+    "habitat": "Selva"
+  }
+  {
+    "especie": "Zebra",
+    "dieta": "Herbívoro",
+    "habitat": "Llanuras"
+  }
+  {
+    "especie": "Nutria",
+    "dieta": "Carnivoro",
+    "habitat": "Rios"
+  }
+  {
+    "especie": "Conejo",
+    "dieta": "Herbívoro",
+    "habitat": "Praderas"
+  }
+  {
+    "especie": "Cocodrillo",
+    "dieta": "Carnívoro",
+    "habitat": "Rios"
+  }
+  {
+    "especie": "Loro",
+    "dieta": "Onmívoro",
+    "habitat": "Selva"
+  }
+  {
+    "especie": "Pavo Reales",
+    "dieta": "Onmívoro",
+    "habitat": "Selva"
+  }
+  {
+    "especie": "Koala",
+    "dieta": "Herbívoro",
+    "habitat": "Selva"
+  }
+  {
+    "especie": "Tigre de vengala",
+    "dieta": "Carnivoro",
+    "habitat": "Selva"
+  }
+]
+     
+    
