@@ -1,2 +1,8 @@
 /.vscode
 /bin
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/proyectoZoo.iml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
