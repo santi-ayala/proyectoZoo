@@ -1,4 +1,4 @@
-import Modelo.Usuario.Administrativo;
+import Modelo.Usuario.Administrador;
 import Modelo.Zoologico;
 
 import java.util.Scanner;
@@ -115,7 +115,7 @@ public class Main {
 
         Zoologico zoo = new Zoologico();
 
-        Administrativo admin = new Administrativo(nombreAdmin, contrasenia);
+        Administrador admin = new Administrador(nombreAdmin, contrasenia);
 
 
     }
