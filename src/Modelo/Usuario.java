@@ -13,9 +13,6 @@ public class Usuario {
     private TipoUsuario tipo;
     private ArrayList<Tarea> tareas;
 
-
-
-
     //============================
     //CONSTRUCTORES
     //============================
@@ -51,5 +48,22 @@ public class Usuario {
 
     public String getNombre() {
         return nombre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        boolean esFalso = false;
+        if(o != null && o instanceof Usuario){
+            Usuario usuario1 = (Usuario) o;
+            if(usuario1.getUsuario().equalsIgnoreCase(usuario) && usuario1.getContrasenia() == contrasenia ){
+                esFalso = true;
+            }
+        }
+        return esFalso;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
     }
 }

@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:src/Modelo/animal/Animal.java
+package Modelo.animal;
+========
 package Modelo;
+>>>>>>>> origin/main:src/Modelo/Animal.java
 
 import java.util.Random;
 
@@ -15,9 +19,9 @@ public class Animal {
 
     //Constructores
     public Animal(String observaciones) {
-        this.especie =  ; //json
-        this.dieta = ;//json
-        habitat = ;//json
+        this.especie = "" ; //json
+        this.dieta = "";//json
+        habitat = "";//json
         this.cantidadVisitas = visitas();
         this.salud = estadoSalud();
         this.edad = edadRandom();
