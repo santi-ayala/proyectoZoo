@@ -1,8 +1,14 @@
 package Modelo;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Random;
 
-public class Animal  {
+
+
+public class Animal {
 
     //Atributos
     private String especie;
@@ -15,9 +21,10 @@ public class Animal  {
 
     //Constructores
     public Animal(String observaciones) {
-        this.especie = "" ; //json
-        this.dieta = "";//json
-        habitat = "";//json
+        int random = randomCantAnimalesJson();
+        this.dieta = dietaJson(random);//json
+        habitat = habitatJson(random);//json
+        this.especie = especieJson(random); //json
         this.cantidadVisitas = visitas();
         this.salud = estadoSalud();
         this.edad = edadRandom();
@@ -69,7 +76,7 @@ public class Animal  {
     public int visitas(){
         Random random =new Random();
         return random.nextInt(1500) + 1;
-    }
+    } //Esta funcion te retorna de manera random las visitas
     public boolean estadoSalud(){
         boolean salud = false;
         Random random =new Random();
@@ -78,11 +85,61 @@ public class Animal  {
             salud = true;
         }
         return salud;
-    }
+    }//Esta funcion te retorna de manera random el estado Salud
     public int edadRandom(){
         Random random =new Random();
         return random.nextInt(50) + 1;
-    }
+    }//Esta funcion te retorna de manera random la edad
+    public String especieJson(int random){
+        String jsonString = UtilesJson.leer("Animales");
+        String especie ="";
+        try {
+            JSONArray jsonArray = new JSONArray(jsonString);
+            JSONObject jsonObject = jsonArray.getJSONObject(random);
+            especie = jsonObject.getString("especie");
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return especie;
+    } //Esta funcion busca en el Json y te devuelve una especie
+    public String dietaJson(int random){
+        String jsonString = UtilesJson.leer("Animales");
+        String dieta ="";
+        try {
+            JSONArray jsonArray = new JSONArray(jsonString);
+            JSONObject jsonObject = jsonArray.getJSONObject(random);
+            dieta = jsonObject.getString("dieta");
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return dieta;
+    }//Esta funcion busca en el Json y te devuelve una dieta
+    public String habitatJson(int random){
+        String jsonString = UtilesJson.leer("Animales");
+        String habitat ="";
+        try {
+            JSONArray jsonArray = new JSONArray(jsonString);
+            JSONObject jsonObject = jsonArray.getJSONObject(random);
+            habitat = jsonObject.getString("habitat");
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return habitat;
+    }//Esta funcion busca en el Json y te devuelve una habitat
+    public int randomCantAnimalesJson(){
+        String jsonString = UtilesJson.leer("Animales");
+        Random random = new Random();
+        try {
+            JSONArray jsonArray = new JSONArray(jsonString);
+            return random.nextInt(jsonArray.length());
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+    }//Esta funcion devuelve de manera random segun la cantidad de objetos que hay en el Json
 
 
 
