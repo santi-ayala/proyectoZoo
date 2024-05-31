@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/Modelo/animal/Animal.java
-package Modelo.animal;
-========
 package Modelo;
->>>>>>>> origin/main:src/Modelo/Animal.java
 
 import java.util.Random;
 

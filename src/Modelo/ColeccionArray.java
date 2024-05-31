@@ -1,27 +1,25 @@
 package Modelo;
 
-import Modelo.animal.Animal;
-
 import java.util.ArrayList;
 
 public class ColeccionArray<T> implements ICRUDE<T> {
     //Atributos
-    private ArrayList<Usuario> plantilla;
-    private ArrayList<Animal> animalArrayList;
+    private ArrayList<T> tArrayList;
+
 
     //Constructor
     public ColeccionArray() {
-        plantilla = new ArrayList<Usuario>();
-        animalArrayList = new ArrayList<Animal>();
+        tArrayList = new ArrayList<>();
     }
 
+    ///
     @Override
     public boolean darDeAlta(T t) {
-        return false;
+        return tArrayList.add(t);
     }
 
     @Override
     public boolean darDeBaja(T t) {
-        return false;
+        return tArrayList.remove(t);
     }
 }
