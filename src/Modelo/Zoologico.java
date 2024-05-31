@@ -10,8 +10,8 @@ public class Zoologico {
     //============================
     private String nombre;
     private Usuario admin;
-    private ArrayList<Usuario> plantilla;
-    private ArrayList<Animal> animales;
+    private ColeccionArray<Usuario> coleccionUsuario;
+    private ColeccionArray<Animal> coleccionAnimal;
     private float balance;
 
     // fecha de inicio:2024/30/05 ---> siempre va a haber un valor
@@ -27,13 +27,13 @@ public class Zoologico {
     //============================
     //CONSTRUCTORES
     //============================
-    public Zoologico(String nombre, Usuario admin) {
+    public Zoologico(String nombreZoo, Usuario admin) {
         this.nombre = nombre;
         if(admin.getTipoUsuario() == TipoUsuario.ADMINISTRADOR)
             this.admin = admin;
 
-        plantilla = new ArrayList<Usuario>();
-        animales = new ArrayList<Animal>();
+
+
         balance = 0f;
 
         fechaDeInicio = LocalDate.now();
@@ -57,5 +57,6 @@ public class Zoologico {
         //sumamos un día a nuestra fecha
         fechaActual.plusDays(1);
     }
+
 
 }
