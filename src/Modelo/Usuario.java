@@ -66,4 +66,5 @@ public class Usuario {
     public int hashCode() {
         return 0;
     }
+
 }

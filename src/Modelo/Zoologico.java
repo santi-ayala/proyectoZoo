@@ -14,13 +14,6 @@ public class Zoologico {
     private ColeccionArray<Animal> coleccionAnimal;
     private float balance;
 
-    // fecha de inicio:2024/30/05 ---> siempre va a haber un valor
-    private LocalDate fechaDeInicio;
-
-    //Cuando vayamos a avanzar la simulación, vamos a almacenar un reporte con
-    //una clave fechaActual, y vamos a sumarle un día
-    private LocalDate fechaActual;
-
     private HashMap<LocalDate, Reporte> historial;
 
 
@@ -36,10 +29,6 @@ public class Zoologico {
 
         balance = 0f;
 
-        fechaDeInicio = LocalDate.now();
-        fechaActual = fechaDeInicio;
-
-        historial = new HashMap<LocalDate, Reporte>();
     }
 
     //============================
@@ -57,6 +46,8 @@ public class Zoologico {
         //sumamos un día a nuestra fecha
         fechaActual.plusDays(1);
     }
+
+
 
 
 }
