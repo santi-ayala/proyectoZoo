@@ -1,4 +1,4 @@
-package Modelo.Animal;
+package Modelo;
 
 import java.util.Random;
 
