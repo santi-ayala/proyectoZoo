@@ -2,7 +2,7 @@ package Modelo;
 
 import java.util.Random;
 
-public class Animal {
+public class Animal  {
 
     //Atributos
     private String especie;

@@ -1,10 +1,10 @@
 package Modelo;
 
-import Modelo.animal.Animal;
-
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Reporte {
+public class Reporte implements Serializable {
 
     //Atributos
     private float balance;
@@ -13,6 +13,7 @@ public class Reporte {
     private Animal animalEstella;
     private ArrayList<Animal>  animalEnfermos;
     private Usuario empleadoEstrella;
+    private LocalDate fecha;
 
     //Contructores
     public Reporte(float balance, float ingreso, float egreso, Animal animalEstella,
@@ -23,9 +24,17 @@ public class Reporte {
         this.animalEstella = animalEstella;
         this.animalEnfermos = animalEnfermos;
         this.empleadoEstrella = empleadoEstrella;
+        fecha = LocalDate.now();
+    }
+    //Getters and Setters
+
+    public LocalDate getFecha() {
+        return fecha;
     }
 
+
     //Metodos
+
     @Override
     public String toString() {
         return "Reporte{" +
@@ -35,6 +44,7 @@ public class Reporte {
                 ", animalEstella=" + animalEstella +
                 ", animalEnfermos=" + animalEnfermos +
                 ", empleadoEstrella=" + empleadoEstrella +
+                ", fecha=" + fecha +
                 '}';
     }
 }
