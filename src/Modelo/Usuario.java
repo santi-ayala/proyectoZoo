@@ -44,4 +44,21 @@ public class Usuario {
     public TipoUsuario getTipoUsuario() {
         return tipo;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        boolean esFalso = false;
+        if(o != null && o instanceof Usuario){
+            Usuario usuario1 = (Usuario) o;
+            if(usuario1.getUsuario().equalsIgnoreCase(usuario) && usuario1.getContrasenia() == contrasenia ){
+                esFalso = true;
+            }
+        }
+        return esFalso;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

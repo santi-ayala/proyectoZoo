@@ -59,7 +59,7 @@ public class Main {
 
 
         Usuario admin = new Usuario(nombreAdmin, contrasenia, TipoUsuario.ADMINISTRADOR);
-        Zoologico zoo = new Zoologico();
+        Zoologico<T> zoo = new Zoologico();
 
 
     }

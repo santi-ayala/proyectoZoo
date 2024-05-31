@@ -1,4 +1,4 @@
-package Modelo.Animal;
+package Modelo.animal;
 
 import java.util.Random;
 
@@ -15,9 +15,9 @@ public class Animal {
 
     //Constructores
     public Animal(String observaciones) {
-        this.especie =  ; //json
-        this.dieta = ;//json
-        habitat = ;//json
+        this.especie = "" ; //json
+        this.dieta = "";//json
+        habitat = "";//json
         this.cantidadVisitas = visitas();
         this.salud = estadoSalud();
         this.edad = edadRandom();
