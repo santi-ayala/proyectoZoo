@@ -1,8 +1,5 @@
 package Modelo;
 
-
-import Modelo.animal.Animal;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,8 +10,8 @@ public class Zoologico {
     //============================
     private String nombre;
     private Usuario admin;
-
-    private ColeccionArray<T> coleccionArray;
+    private ColeccionArray<Usuario> coleccionUsuario;
+    private ColeccionArray<Animal> coleccionAnimal;
     private float balance;
 
     // fecha de inicio:2024/30/05 ---> siempre va a haber un valor
@@ -36,6 +33,7 @@ public class Zoologico {
             this.admin = admin;
 
 
+
         balance = 0f;
 
         fechaDeInicio = LocalDate.now();
@@ -53,10 +51,6 @@ public class Zoologico {
         //utiliza como clave del hashmap fechaActual
     }
 
-    public boolean darDeBaja(String usuario, String contrasenia){
-        //Esta función lo que hace es dar de baja a un usuario, retorna un boolean si se realizo o no
-    }
-
     public void avanzarSimulacion(){
         generar_y_guardar_reporte();
 
@@ -64,43 +58,5 @@ public class Zoologico {
         fechaActual.plusDays(1);
     }
 
-    public boolean darDeAlta(String usuario, String contrasenia,TipoUsuario tipoUsuario){
-        boolean esFalso = false;
-        Usuario usuario1 = new Usuario(usuario,contrasenia,tipoUsuario);
 
-        return esFalso;
-    }//Esta función lo que hace es dar de baja a un usuario, retorna un boolean si se realizo o no
-    public Usuario buscarSegunContraseniaUsuario(String usuario, String contra){
-        Usuario usuario1= null;
-        for (Usuario usuario2: plantilla){
-            if(usuario2.getContrasenia() == contra && usuario2.getUsuario().equalsIgnoreCase(usuario)){
-                usuario1 = usuario2;
-            }
-        }
-        return usuario1;
-    }
-
-
-    @Override
-    public boolean darDeBaja(T t) {
-        boolean esFalso = false;
-        if (t instanceof Usuario){
-            Usuario usuario1 = (Usuario) t;
-            int i = plantilla.indexOf(usuario1);
-            if(i != -1){
-                esFalso = plantilla.remove(usuario1);
-            }
-
-        }else{
-            Modelo.animal.Animal animal = (Modelo.animal.Animal) t;
-
-        }
-
-        return esFalso;
-    }
-
-    @Override
-    public boolean darDeAlta(T t) {
-        return null;
-    }
 }
