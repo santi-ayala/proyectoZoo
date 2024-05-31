@@ -1,6 +1,6 @@
-package Modelo.Usuario;
+package Modelo;
 
-public enum EnumTipoUsuario {
+public enum TipoUsuario {
 
     ADMINISTRADOR, EMPLEADO, CUIDADOR, VENDEDOR;
 

@@ -1,6 +1,4 @@
-package Modelo.Usuario;
-
-import Modelo.Tarea;
+package Modelo;
 
 import java.util.ArrayList;
 
@@ -11,13 +9,13 @@ public class Usuario {
     //============================
     private String usuario;
     private String contrasenia;
-    private EnumTipoUsuario tipo;
+    private TipoUsuario tipo;
     private ArrayList<Tarea> tareas;
 
     //============================
     //CONSTRUCTORES
     //============================
-    public Usuario(String usuario, String contrasenia, EnumTipoUsuario tipo) {
+    public Usuario(String usuario, String contrasenia, TipoUsuario tipo) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
         this.tipo = tipo;
@@ -43,4 +41,7 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
+    public TipoUsuario getTipoUsuario() {
+        return tipo;
+    }
 }

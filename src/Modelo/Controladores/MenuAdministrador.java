@@ -1,6 +1,11 @@
 package Modelo.Controladores;
 
-public class MenuAdministrador {
-    //todo: implementar ENUMS
+import Modelo.Zoologico;
 
+public class MenuAdministrador {
+    Zoologico zoo;
+
+    public MenuAdministrador(Zoologico zoo) {
+        this.zoo = zoo;
+    }
 }
