@@ -26,7 +26,7 @@ public class MenuAdministrador {
             System.out.println("Bienvenido " + admin.getNombre() + "!");
             System.out.println("1) Administrar Empleados");
             System.out.println("2) Administrar Animales");
-            System.out.println("3) Asignar Tareas");
+            System.out.println("3) Administrar Tareas");
             System.out.println("4) Ver reportes");
             System.out.println("5) Salir");
 
@@ -43,7 +43,7 @@ public class MenuAdministrador {
                     break;
                 case "3":
                     Utils.limpiarPantalla();
-                    asignarTareas();
+                    administrarTareas();
                     break;
                 case "4":
                     Utils.limpiarPantalla();
@@ -62,11 +62,28 @@ public class MenuAdministrador {
     }
 
         private void administrarEmpleados(){
-            System.out.println("1) Dar de alta");
-            System.out.println("2) Eliminar");
+            boolean quiereSalir = false;
+            while(!quiereSalir){
+                System.out.println("1) Dar de alta");
+                System.out.println("2) Eliminar");
+                System.out.println("3) Cambiar usuario");
+                System.out.println("4) Cambiar contraseña");
 
+                String eleccion = scanner.nextLine();
 
+                switch (eleccion){
+                    case "1":
 
+                        break;
+                    case "2":
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                    default:
+                }
+            }
         }
 
 
@@ -77,25 +94,22 @@ public class MenuAdministrador {
 
         }
 
-        private void asignarTareas () {
-
+        private void administrarTareas() {
+            System.out.println("");
 
         }
 
         private void verReportes () {
 
-            System.out.println("1) Reporte especifico");
-            System.out.println("2) Ver todos los reportes");
+            System.out.println("1) Buscar reporte por fecha");
+            System.out.println("2) Ver listado de reportes");
             System.out.println("3) Animal Estrella del mes");
             System.out.println("4) Empleado Estrella del mes");
-
-    }
-
-
-
 
         }
 
 
-    }
+
+
 }
+

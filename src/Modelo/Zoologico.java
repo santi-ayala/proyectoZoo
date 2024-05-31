@@ -53,16 +53,16 @@ public class Zoologico {
         //utiliza como clave del hashmap fechaActual
     }
 
+    public boolean darDeBaja(String usuario, String contrasenia){
+        //Esta función lo que hace es dar de baja a un usuario, retorna un boolean si se realizo o no
+    }
+
     public void avanzarSimulacion(){
         generar_y_guardar_reporte();
 
         //sumamos un día a nuestra fecha
         fechaActual.plusDays(1);
     }
-
-    public boolean darDeBaja(String usuario, String contrasenia){
-
-    }//Esta función lo que hace es dar de baja a un usuario, retorna un boolean si se realizo o no
 
     public boolean darDeAlta(String usuario, String contrasenia,TipoUsuario tipoUsuario){
         boolean esFalso = false;
