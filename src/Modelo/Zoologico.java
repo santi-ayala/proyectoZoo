@@ -40,12 +40,6 @@ public class Zoologico {
         //utiliza como clave del hashmap fechaActual
     }
 
-    public void avanzarSimulacion(){
-        generar_y_guardar_reporte();
-
-        //sumamos un día a nuestra fecha
-        fechaActual.plusDays(1);
-    }
 
 
 
