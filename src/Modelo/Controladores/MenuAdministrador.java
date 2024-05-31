@@ -66,7 +66,6 @@ public class MenuAdministrador {
             System.out.println("2) Eliminar");
 
 
-
         }
 
 
@@ -93,9 +92,7 @@ public class MenuAdministrador {
 
 
 
-
-        }
-
-
-    }
 }
+
+
+
