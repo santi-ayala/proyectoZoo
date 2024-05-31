@@ -7,6 +7,7 @@ public class Usuario {
     //============================
     //ATRIBUTOS
     //============================
+    private String nombre;
     private String usuario;
     private String contrasenia;
     private TipoUsuario tipo;
@@ -15,7 +16,7 @@ public class Usuario {
     //============================
     //CONSTRUCTORES
     //============================
-    public Usuario(String usuario, String contrasenia, TipoUsuario tipo) {
+    public Usuario(String usuario, String contrasenia, TipoUsuario tipo, String nombre) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
         this.tipo = tipo;
@@ -43,6 +44,10 @@ public class Usuario {
 
     public TipoUsuario getTipoUsuario() {
         return tipo;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     @Override
