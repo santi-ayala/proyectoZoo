@@ -11,7 +11,7 @@ public class Usuario {
     private String usuario;
     private String contrasenia;
     private TipoUsuario tipo;
-    private ArrayList<Tarea> tareas;
+    protected ArrayList<Tarea> tareas;
 
     //============================
     //CONSTRUCTORES

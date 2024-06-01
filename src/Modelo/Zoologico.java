@@ -40,6 +40,35 @@ public class Zoologico {
         //utiliza como clave del hashmap fechaActual
     }
 
+    public boolean marcarTareaCompletada(String tarea, Usuario empleado){
+
+        boolean verificacion = true;
+
+        ArrayList<Tarea> tareas = empleado.tareas;
+
+        for(int i=0; i<tareas.size(); i++){
+
+         if(tareas.get(i).getAccion().equals(tarea)){
+
+             tareas.get(i).setCompletado(true);
+
+             verificacion=true;
+
+
+
+
+         }else{
+
+             verificacion=false;
+
+         }
+
+     }
+
+    return verificacion;
+
+    }
+
 
 
 
