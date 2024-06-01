@@ -29,6 +29,9 @@ public class Zoologico {
         if(admin.getTipoUsuario() == TipoUsuario.ADMINISTRADOR)
             this.admin = admin;
 
+        coleccionUsuario = new ColeccionArray<Usuario>();
+        coleccionAnimal = new ColeccionArray<Animal>();
+
         fechaDeInicio = LocalDate.now();
         fechaActual = fechaDeInicio;
         balance = 0f;

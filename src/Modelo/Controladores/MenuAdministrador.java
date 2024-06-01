@@ -1,5 +1,6 @@
 package Modelo.Controladores;
 
+import Modelo.TipoUsuario;
 import Modelo.Utils;
 import Modelo.Usuario;
 import Modelo.Zoologico;
@@ -73,7 +74,8 @@ public class MenuAdministrador {
 
                 switch (eleccion){
                     case "1":
-
+                        Utils.limpiarPantalla();
+                        CRUDEmpleados.altaEmpleado();
                         break;
                     case "2":
                         break;
@@ -85,20 +87,16 @@ public class MenuAdministrador {
                 }
             }
         }
-
-
         private void administrarAnimales () {
 
         System.out.println("1) Dar de alta");
         System.out.println("2) Eliminar");
 
         }
-
         private void administrarTareas() {
             System.out.println("");
 
         }
-
         private void verReportes () {
 
             System.out.println("1) Buscar reporte por fecha");
@@ -108,8 +106,22 @@ public class MenuAdministrador {
 
         }
 
+        static class CRUDEmpleados{
+            static void altaEmpleado(){
+                Utils.limpiarScanner();
+                System.out.println("Ingrese el nombre de su nuevo empleado:");
+                String nombreApellido = scanner.nextLine();
+
+                System.out.println("Ingrese un usuario:");
+                String usuario = scanner.nextLine();
+
+                System.out.println("Ingrese una contraseña");
+                String contrasenia = scanner.nextLine();
+
+                Usuario empleado = new Usuario(usuario, contrasenia, TipoUsuario.EMPLEADO, nombreApellido);
 
 
-
+            }
+        }
 }
 

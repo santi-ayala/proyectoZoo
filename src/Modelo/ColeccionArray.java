@@ -10,7 +10,7 @@ public class ColeccionArray<T> implements ICRUDE<T> {
 
     //Constructor
     public ColeccionArray() {
-        tArrayList = new ArrayList<>();
+        tArrayList = new ArrayList<T>();
     }
 
     ///
