@@ -5,6 +5,9 @@ import Modelo.Usuario;
 import Modelo.Utils;
 import Modelo.Zoologico;
 
+
+import java.util.Random;
+
 import static Modelo.Utils.scanner;
 
 public class MenuEmpleado {
@@ -21,6 +24,16 @@ public class MenuEmpleado {
     //============================
     //MÉTODOS
     //============================
+
+    //Generar numero random
+
+    public static int getRandomNumber() {
+        Random random = new Random();
+        int min = 35;
+        int max = 150;
+        return random.nextInt((max - min + 1)) + min;
+    }
+
     public void mainLoop() {
         boolean quiereSalir = false;
         String eleccion;
@@ -55,11 +68,26 @@ public class MenuEmpleado {
                     break;
                 case "2":
                     Utils.limpiarPantalla();
-                    administrarAnimales();
+                    System.out.println("Que animal fue curado?");
+                    String especie;
+                    especie = scanner.nextLine();
+                   // boolean verificacion;
+                    verificacion = zoo.curarAnimal(especie);
+
+                    if(verificacion){
+                        System.out.println("Felcitaciones, buen trabajo!");
+                    }else{
+
+                        System.out.println("No se encontro la especie");
+                    }
+
+
                     break;
                 case "3":
                     Utils.limpiarPantalla();
-                    administrarTareas();
+                    int randomNumber = getRandomNumber();
+                    System.out.println("Las entradas vendidas son : " + randomNumber);
+
                     break;
                 case "4":
                     Utils.limpiarPantalla();

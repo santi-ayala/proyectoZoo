@@ -141,7 +141,16 @@ public class Animal {
 
     }//Esta funcion devuelve de manera random segun la cantidad de objetos que hay en el Json
 
-
-
-
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "especie='" + especie + '\'' +
+                ", habitat='" + habitat + '\'' +
+                ", cantidadVisitas=" + cantidadVisitas +
+                ", salud=" + salud +
+                ", edad=" + edad +
+                ", dieta='" + dieta + '\'' +
+                ", observaciones='" + observaciones + '\'' +
+                '}';
+    }
 }

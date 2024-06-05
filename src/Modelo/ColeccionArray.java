@@ -25,7 +25,7 @@ public class ColeccionArray<T> implements ICRUDE<T> {
     }
 
     @Override
-    public Collection<T> listado() {
+    public ArrayList<T> listado() {
         return tArrayList;
     }
 

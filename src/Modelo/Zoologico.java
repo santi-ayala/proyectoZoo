@@ -2,6 +2,7 @@ package Modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Zoologico {
@@ -14,8 +15,8 @@ public class Zoologico {
     private ICRUDE<Animal> coleccionAnimal;
     private float balance;
 
-    LocalDate fechaDeInicio;
-    LocalDate fechaActual;
+    private LocalDate fechaDeInicio;
+    private LocalDate fechaActual;
 
     private HashMap<LocalDate, Reporte> historial;
 
@@ -43,6 +44,23 @@ public class Zoologico {
         //utiliza como clave del hashmap fechaActual
     }
 
+
+    //Mostrar animales
+    public void mostrarAnimales(){
+
+     ArrayList<Animal> animales = coleccionAnimal.listado();
+
+     for(int i=0; i<animales.size();i++){
+
+         System.out.println(animales.get(i));
+
+     }
+
+    }
+
+
+
+//FUNCIONES EMPLEADO////////////////////////////////////
     public boolean marcarTareaCompletada(String tarea, Usuario empleado){
 
         boolean verificacion = true;
@@ -72,6 +90,39 @@ public class Zoologico {
 
     }
 
+    public boolean curarAnimal(String especie){
+
+        boolean verificacion = true;
+
+        ArrayList<Animal> animales = coleccionAnimal.listado();
+
+        for(int i=0; i<animales.size(); i++){
+
+            if(animales.get(i).getEspecie().equals(especie)){
+
+                animales.get(i).setSalud(true);
+
+                verificacion=true;
+
+
+
+
+            }else{
+
+                verificacion=false;
+
+            }
+
+        }
+
+        return verificacion;
+
+    }
+
+
+
+
+//////////////////////////////////////////
 
 
 
