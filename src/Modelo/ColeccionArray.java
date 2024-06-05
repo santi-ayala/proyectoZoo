@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class ColeccionArray<T> implements ICRUDE<T> {
     //Atributos
@@ -21,5 +22,23 @@ public class ColeccionArray<T> implements ICRUDE<T> {
     @Override
     public boolean darDeBaja(T t) {
         return tArrayList.remove(t);
+    }
+
+    @Override
+    public Collection<T> listado() {
+        return tArrayList;
+    }
+
+    public boolean modificar(T objetoOriginal, T objetoModificado){
+        boolean retorno = false;
+
+        for(T elemento: tArrayList){
+            if(elemento.equals(objetoOriginal)){
+                int i = tArrayList.indexOf(elemento);
+                tArrayList.set(i, objetoModificado);
+                retorno = true;
+            }
+        }
+        return retorno;
     }
 }
