@@ -104,7 +104,7 @@ public class MenuAdministrador {
                         boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().gettArrayList().get(pos));
                         if(esVerdadero){
                             System.out.println("Eliminado correctamente");
-                        }else if(esVerdadero = false) {
+                        }else {
                             System.out.println("Error... ");
                         }
                         break;
@@ -119,8 +119,9 @@ public class MenuAdministrador {
                         if(pos != -1) {
                             Usuario usuario1 = zoo.getColeccionUsuario().gettArrayList().get(pos);
 
-                            System.out.println("Nombre aux: ");
+                            System.out.println("Nombre nuevo: ");
                             usuarioAUX = scanner.nextLine();
+
                             Usuario nuevo = new Usuario(usuarioAUX, usuario1.getContrasenia(), usuario1.getTipoUsuario(),usuario1.getNombre());
                             boolean bo = zoo.getColeccionUsuario().modificar(usuario1,nuevo);
                             if(bo){
