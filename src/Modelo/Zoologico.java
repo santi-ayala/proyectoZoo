@@ -72,6 +72,85 @@ public class Zoologico {
     }
 
 
+    //Mostrar animales
+    public void mostrarAnimales(){
+
+     ArrayList<Animal> animales = coleccionAnimal.listado();
+
+     for(int i=0; i<animales.size();i++){
+
+         System.out.println(animales.get(i));
+
+     }
+
+    }
+
+
+
+//FUNCIONES EMPLEADO////////////////////////////////////
+    public boolean marcarTareaCompletada(String tarea, Usuario empleado){
+
+        boolean verificacion = true;
+
+        ArrayList<Tarea> tareas = empleado.tareas;
+
+        for(int i=0; i<tareas.size(); i++){
+
+         if(tareas.get(i).getAccion().equals(tarea)){
+
+             tareas.get(i).setCompletado(true);
+
+             verificacion=true;
+
+
+
+
+         }else{
+
+             verificacion=false;
+
+         }
+
+     }
+
+    return verificacion;
+
+    }
+
+    public boolean curarAnimal(String especie){
+
+        boolean verificacion = true;
+
+        ArrayList<Animal> animales = coleccionAnimal.listado();
+
+        for(int i=0; i<animales.size(); i++){
+
+            if(animales.get(i).getEspecie().equals(especie)){
+
+                animales.get(i).setSalud(true);
+
+                verificacion=true;
+
+
+
+
+            }else{
+
+                verificacion=false;
+
+            }
+
+        }
+
+        return verificacion;
+
+    }
+
+
+
+
+//////////////////////////////////////////
+
 
 
 
