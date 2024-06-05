@@ -10,9 +10,12 @@ public class Zoologico {
     //============================
     private String nombre;
     private Usuario admin;
-    private ColeccionArray<Usuario> coleccionUsuario;
-    private ColeccionArray<Animal> coleccionAnimal;
+    private ICRUDE<Usuario> coleccionUsuario;
+    private ICRUDE<Animal> coleccionAnimal;
     private float balance;
+
+    LocalDate fechaDeInicio;
+    LocalDate fechaActual;
 
     private HashMap<LocalDate, Reporte> historial;
 
@@ -22,13 +25,13 @@ public class Zoologico {
     //============================
     public Zoologico(String nombreZoo, Usuario admin) {
         this.nombre = nombre;
+
         if(admin.getTipoUsuario() == TipoUsuario.ADMINISTRADOR)
             this.admin = admin;
 
-
-
+        fechaDeInicio = LocalDate.now();
+        fechaActual = fechaDeInicio;
         balance = 0f;
-
     }
 
     //============================
