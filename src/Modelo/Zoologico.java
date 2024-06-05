@@ -26,10 +26,29 @@ public class Zoologico {
             this.admin = admin;
 
 
-
         balance = 0f;
 
     }
+    //============================
+    //Getter and Setters
+    //============================
+
+    public ColeccionArray<Usuario> getColeccionUsuario() {
+        return coleccionUsuario;
+    }
+
+    public void setColeccionUsuario(ColeccionArray<Usuario> coleccionUsuario) {
+        this.coleccionUsuario = coleccionUsuario;
+    }
+
+    public ColeccionArray<Animal> getColeccionAnimal() {
+        return coleccionAnimal;
+    }
+
+    public void setColeccionAnimal(ColeccionArray<Animal> coleccionAnimal) {
+        this.coleccionAnimal = coleccionAnimal;
+    }
+
 
     //============================
     //MÉTODOS
@@ -38,6 +57,9 @@ public class Zoologico {
     public void generar_y_guardar_reporte(){
         //Genera un reporte, y después lo guarda en nuestro hashmap!
         //utiliza como clave del hashmap fechaActual
+    }
+    public Usuario buscarXdni(){
+
     }
 
 

@@ -1,5 +1,6 @@
 package Modelo.Controladores;
 
+import Modelo.TipoUsuario;
 import Modelo.Utils;
 import Modelo.Usuario;
 import Modelo.Zoologico;
@@ -73,9 +74,21 @@ public class MenuAdministrador {
 
                 switch (eleccion){
                     case "1":
+                        System.out.println("Nombre: ");
+                        String nombre = scanner.nextLine();
 
+                        System.out.println("Usuario: ");
+                        String nombreUsuario = scanner.nextLine();
+
+                        System.out.println("Contraseña: ");
+                        String contra = scanner.nextLine();
+
+                        Usuario usuario = new Usuario(nombreUsuario,contra, TipoUsuario.EMPLEADO,nombre);
+
+                        zoo.getColeccionUsuario().darDeAlta(usuario);
                         break;
                     case "2":
+
                         break;
                     case "3":
                         break;
