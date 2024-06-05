@@ -13,7 +13,13 @@ public class ColeccionArray<T> implements ICRUDE<T> {
         tArrayList = new ArrayList<>();
     }
 
-    ///
+    //Getter
+
+    public ArrayList<T> gettArrayList() {
+        return tArrayList;
+    }
+
+    ///Metodos
     @Override
     public boolean darDeAlta(T t) {
         return tArrayList.add(t);
@@ -25,7 +31,7 @@ public class ColeccionArray<T> implements ICRUDE<T> {
     }
 
     @Override
-    public Collection<T> listado() {
+    public ArrayList<T> listado() {
         return tArrayList;
     }
 
