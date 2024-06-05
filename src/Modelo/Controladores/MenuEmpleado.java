@@ -91,7 +91,7 @@ public class MenuEmpleado {
                     break;
                 case "4":
                     Utils.limpiarPantalla();
-                    verReportes();
+
                     break;
                 case "5":
                     Utils.limpiarPantalla();

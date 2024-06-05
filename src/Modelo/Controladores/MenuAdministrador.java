@@ -1,9 +1,6 @@
 package Modelo.Controladores;
 
-import Modelo.TipoUsuario;
-import Modelo.Utils;
-import Modelo.Usuario;
-import Modelo.Zoologico;
+import Modelo.*;
 
 import static Modelo.Utils.scanner;
 
@@ -104,7 +101,7 @@ public class MenuAdministrador {
                         boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().gettArrayList().get(pos));
                         if(esVerdadero){
                             System.out.println("Eliminado correctamente");
-                        }else if(esVerdadero = false) {
+                        }else {
                             System.out.println("Error... ");
                         }
                         break;
@@ -157,25 +154,121 @@ public class MenuAdministrador {
                         }
                         break;
                     default:
+                        System.out.println("Opción incorrecta");
+                        break;
                 }
             }
         }
 
 
         private void administrarAnimales () {
+        boolean quieroSalir = false;
+         while(!quieroSalir){
 
-        System.out.println("1) Dar de alta");
-        System.out.println("2) Eliminar");
+             System.out.println("1) Dar de alta");
+             System.out.println("2) Eliminar");
+             String eleccion = scanner.nextLine();
+             String especie, habitat, dieta, observaciones;
+             int edad, posicion=0;
+             boolean esVerdadero;
+             switch (eleccion){
+                 case "1":
+                     System.out.println("Especie: ");
+                     especie = scanner.nextLine();
 
+                     System.out.println("Habitat: ");
+                     habitat = scanner.nextLine();
+
+                     System.out.println("Dieta: ");
+                     dieta = scanner.nextLine();
+
+                     System.out.println("Edad: ");
+                     edad = scanner.nextInt();
+
+                     System.out.println("Observaciones: ");
+                     observaciones = scanner.nextLine();
+
+                     Animal animal = new Animal(especie,habitat,edad,dieta,observaciones);
+
+                     esVerdadero = zoo.getColeccionAnimal().darDeAlta(animal);
+                     if(esVerdadero){
+                         System.out.println("Agregado correctamente");
+                     }else {
+                         System.out.println("No se pudo agregar");
+                     }
+                     break;
+                 case "2":
+                     System.out.println("Especie: ");
+                     especie = scanner.nextLine();
+
+                     System.out.println("Habitat: ");
+                     habitat = scanner.nextLine();
+
+                     System.out.println("Edad: ");
+                     edad = scanner.nextInt();
+
+                     posicion = zoo.buscarXespecieYhabitatYedad(especie,habitat,edad);
+                     if(posicion != -1){
+
+                         Animal animal1 = zoo.getColeccionAnimal().gettArrayList().get(posicion);
+
+                         esVerdadero = zoo.getColeccionAnimal().darDeBaja(animal1);
+                         if(esVerdadero){
+                             System.out.println("Se logro dar de baja al animal");
+                         }else {
+                             System.out.println("No se logro, vuelva intentarlo");
+                         }
+                     }else{
+                         System.out.println("No se encontro el animal");
+                     }
+                     break;
+                 default:
+                     System.out.println("Opción incorrecta");
+                     break;
+             }
+
+
+         }
         }
 
-        private void administrarTareas() {
-            System.out.println("");
+        private void administrarTareas() {//Agrega una tarea a un empleado
+            boolean quiereSalir = false, esVerdadero;
+            String nombreUsuario, contra;
+            int pos;
+            while(!quiereSalir) {
 
+                System.out.println("1) Asignar una tarea");
+
+                String eleccion = scanner.nextLine();
+                switch (eleccion) {
+                    case "1":
+                        System.out.println("Usuario: ");
+                        nombreUsuario = scanner.nextLine();
+
+                        System.out.println("Contraseña: ");
+                        contra = scanner.nextLine();
+
+                        pos = zoo.buscarXusuarioYcontra(nombreUsuario,contra);
+                        if(pos != -1) {
+                            Usuario usuario = zoo.getColeccionUsuario().gettArrayList().get(pos);
+
+                            System.out.println("Tarea a asignar: ");
+
+                            Tarea tarea = new Tarea(scanner.nextLine());
+                            usuario.getTareas().add(tarea);
+                            usuario.setTareas(usuario.getTareas());
+                        }else {
+                            System.out.println("Error: Datos invalidos");
+                        }
+                        break;
+                    default:
+                        System.out.println("Opción incorrecta");
+                        break;
+                }
+            }
         }
 
         private void verReportes () {
-
             System.out.println("1) Buscar reporte por fecha");
             System.out.println("2) Ver listado de reportes");
             System.out.println("3) Animal Estrella del mes");

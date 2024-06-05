@@ -70,6 +70,16 @@ public class Zoologico {
         }
         return posicionReal;
     }
+    public int buscarXespecieYhabitatYedad(String especie, String habitat, int edad){
+        int posicion = 0, posicionReal = -1;
+        for(Animal animal: getColeccionAnimal().gettArrayList()){
+            if(animal.getHabitat().equalsIgnoreCase(habitat) && animal.getEspecie().equalsIgnoreCase(especie) && animal.getEdad() == edad){
+                posicionReal = posicion;
+            }
+            posicion++;
+        }
+        return posicionReal;
+    }
 
 
     //Mostrar animales

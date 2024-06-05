@@ -50,6 +50,14 @@ public class Usuario {
         return nombre;
     }
 
+    public ArrayList<Tarea> getTareas() {
+        return tareas;
+    }
+
+    public void setTareas(ArrayList<Tarea> tareas) {
+        this.tareas = tareas;
+    }
+
     @Override
     public boolean equals(Object o) {
         boolean esFalso = false;
