@@ -71,28 +71,90 @@ public class MenuAdministrador {
                 System.out.println("4) Cambiar contraseña");
 
                 String eleccion = scanner.nextLine();
+                String nombre;
+                String nombreUsuario;
+                String contra;
+                String usuarioAUX;
+                String contraAUX;
+                int pos;
 
                 switch (eleccion){
                     case "1":
                         System.out.println("Nombre: ");
-                        String nombre = scanner.nextLine();
+                         nombre = scanner.nextLine();
 
                         System.out.println("Usuario: ");
-                        String nombreUsuario = scanner.nextLine();
+                         nombreUsuario = scanner.nextLine();
 
                         System.out.println("Contraseña: ");
-                        String contra = scanner.nextLine();
+                         contra = scanner.nextLine();
 
                         Usuario usuario = new Usuario(nombreUsuario,contra, TipoUsuario.EMPLEADO,nombre);
 
                         zoo.getColeccionUsuario().darDeAlta(usuario);
                         break;
                     case "2":
+                        System.out.println("Usuario: ");
+                        nombreUsuario = scanner.nextLine();
 
+                        System.out.println("Contraseña: ");
+                        contra = scanner.nextLine();
+
+                        pos = zoo.buscarXusuarioYcontra(nombreUsuario,contra);
+                        boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().gettArrayList().get(pos));
+                        if(esVerdadero){
+                            System.out.println("Eliminado correctamente");
+                        }else if(esVerdadero = false) {
+                            System.out.println("Error... ");
+                        }
                         break;
                     case "3":
+                        System.out.println("Nombre de usuario original: ");
+                        nombreUsuario = scanner.nextLine();
+
+                        System.out.println("Contraseña: ");
+                        contra = scanner.nextLine();
+
+                        pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
+                        if(pos != -1) {
+                            Usuario usuario1 = zoo.getColeccionUsuario().gettArrayList().get(pos);
+
+                            System.out.println("Nombre aux: ");
+                            usuarioAUX = scanner.nextLine();
+                            Usuario nuevo = new Usuario(usuarioAUX, usuario1.getContrasenia(), usuario1.getTipoUsuario(),usuario1.getNombre());
+                            boolean bo = zoo.getColeccionUsuario().modificar(usuario1,nuevo);
+                            if(bo){
+                                System.out.println("Proceso Exitoso");
+                            }else{
+                                System.out.println("Vuelva a intertarlo");
+                            }
+                        }else{
+                            System.out.println("No se encontro el usuario");
+                        }
                         break;
                     case "4":
+                        System.out.println("Nombre de usuario: ");
+                        nombreUsuario = scanner.nextLine();
+
+                        System.out.println("Contraseña Original: ");
+                        contra = scanner.nextLine();
+
+                        pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
+                        if(pos != -1) {
+                            Usuario usuario1 = zoo.getColeccionUsuario().gettArrayList().get(pos);
+
+                            System.out.println("Contraseña nueva: ");
+                            contraAUX = scanner.nextLine();
+                            Usuario nuevo = new Usuario(usuario1.getUsuario(), contraAUX, usuario1.getTipoUsuario(),usuario1.getNombre());
+                            boolean bo = zoo.getColeccionUsuario().modificar(usuario1,nuevo);
+                            if(bo){
+                                System.out.println("Proceso Exitoso");
+                            }else{
+                                System.out.println("Vuelva a intertarlo");
+                            }
+                        } else{
+                            System.out.println("No se encontro el usuario");
+                        }
                         break;
                     default:
                 }

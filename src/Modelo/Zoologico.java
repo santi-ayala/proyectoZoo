@@ -2,6 +2,7 @@ package Modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Zoologico {
@@ -13,7 +14,8 @@ public class Zoologico {
     private ColeccionArray<Usuario> coleccionUsuario;
     private ColeccionArray<Animal> coleccionAnimal;
     private float balance;
-
+    private LocalDate fechaDeinicio;
+    private LocalDate fechaActual;
     private HashMap<LocalDate, Reporte> historial;
 
 
@@ -58,8 +60,15 @@ public class Zoologico {
         //Genera un reporte, y después lo guarda en nuestro hashmap!
         //utiliza como clave del hashmap fechaActual
     }
-    public Usuario buscarXdni(){
-
+    public int buscarXusuarioYcontra(String usuario, String contra){
+        int posicion = 0, posicionReal = -1;
+        for(Usuario usuario1: getColeccionUsuario().gettArrayList()){
+            if(usuario1.getUsuario().equalsIgnoreCase(usuario) && usuario1.getContrasenia().equalsIgnoreCase(contra)){
+                posicionReal = posicion;
+            }
+            posicion++;
+        }
+        return posicionReal;
     }
 
 
