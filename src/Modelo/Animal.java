@@ -4,11 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.Random;
 
 
 
-public class Animal {
+public class Animal implements Serializable {
 
     //Atributos
     private String especie;

@@ -12,18 +12,18 @@ public class Reporte implements Serializable {
     //FIXME: esto antes tenía ingresos y egresos
     //hay que hacer q arranque lo antes posible
     private float balance;
-    private Animal animalEstella;
+    private Animal animalEstrella;
     private ArrayList<Animal>  animalEnfermos;
     private Usuario empleadoEstrella;
     private LocalDate fecha;
 
     //Contructores
-    public Reporte(float balance, Animal animalEstella, ArrayList<Animal> animalEnfermos, Usuario empleadoEstrella) {
+    public Reporte(float balance, Animal animalEstrella, ArrayList<Animal> animalEnfermos, Usuario empleadoEstrella, LocalDate fecha) {
         this.balance = balance;
-        this.animalEstella = animalEstella;
+        this.animalEstrella = animalEstrella;
         this.animalEnfermos = animalEnfermos;
         this.empleadoEstrella = empleadoEstrella;
-        fecha = LocalDate.now();
+        this.fecha = fecha;
     }
     //Getters and Setters
 
@@ -31,14 +31,31 @@ public class Reporte implements Serializable {
         return fecha;
     }
 
+    public float getBalance() {
+        return balance;
+    }
 
+    public Animal getAnimalEstrella() {
+        return animalEstrella;
+    }
+
+    public ArrayList<Animal> getAnimalEnfermos() {
+        return animalEnfermos;
+    }
+
+    public Usuario getEmpleadoEstrella() {
+        return empleadoEstrella;
+    }
     //Metodos
 
     @Override
     public String toString() {
+        //FIXME: esta re varela este tostring
         return "Reporte{" +
                 "balance=" + balance +
-                ", animalEstella=" + animalEstella +
+                //", ingreso=" + ingreso +
+                //", egreso=" + egreso +
+                ", animalEstrella=" + animalEstrella +
                 ", animalEnfermos=" + animalEnfermos +
                 ", empleadoEstrella=" + empleadoEstrella +
                 ", fecha=" + fecha +

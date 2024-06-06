@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.random.RandomGenerator;
 
 public class Zoologico implements Serializable {
@@ -11,7 +12,10 @@ public class Zoologico implements Serializable {
     //ATRIBUTOS
     //============================
     private String nombre;
+
     private Usuario admin;
+
+    //Coleccion usuario podría ser un hashmap. Mal ahí
     private ColeccionArray<Usuario> coleccionUsuario;
     private ColeccionArray<Animal> coleccionAnimal;
     private float balance;
@@ -50,6 +54,11 @@ public class Zoologico implements Serializable {
     //============================
     //Getter and Setters
     //============================
+
+
+    public String getNombre() {
+        return nombre;
+    }
 
     public ColeccionArray<Usuario> getColeccionUsuario() {
         return coleccionUsuario;
@@ -192,7 +201,7 @@ public class Zoologico implements Serializable {
         }
 
         //TODO: escribir reportes a disco
-        Reporte reporte = new Reporte(balance, animalEstrella, animalesEnfermos, empleadoEstrella);
+        Reporte reporte = new Reporte(balance, animalEstrella, animalesEnfermos, empleadoEstrella, fechaActual);
         historial.put(fechaActual, reporte);
         
         fechaActual = fechaActual.plusDays(1);
