@@ -89,6 +89,11 @@ public class MenuEmpleado {
                     break;
                 case "4":
                     Utils.limpiarPantalla();
+                    System.out.println("Ingrese la nueva contraseña: ");
+                    String contraseña;
+                    contraseña=scanner.nextLine();
+                    cambiarContraseñaEmpleado(contraseña);
+                    System.out.println("Contraseña cambiada con exito!");
 
 
                     break;
@@ -160,6 +165,13 @@ public class MenuEmpleado {
         }
 
         return verificacion;
+
+    }
+
+    public void cambiarContraseñaEmpleado(String contrasenia){
+
+        empleado.setContrasenia(contrasenia);
+
 
     }
 
