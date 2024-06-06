@@ -62,7 +62,6 @@ public class MenuEmpleado {
 
                        System.out.println("No se encontro la tarea");
                    }
-                    System.out.println(empleado.getTareas().toString());
 
 
                     break;
@@ -80,7 +79,6 @@ public class MenuEmpleado {
 
                         System.out.println("No se encontro la especie");
                     }
-                    System.out.println(zoo.getColeccionAnimal().toString());
 
 
                     break;
@@ -93,9 +91,9 @@ public class MenuEmpleado {
                 case "4":
                     Utils.limpiarPantalla();
                     System.out.println("Ingrese la nueva contraseña: ");
-                    String contraseña;
-                    contraseña=scanner.nextLine();
-                    cambiarContraseñaEmpleado(contraseña);
+                    String contrasenia;
+                    contrasenia=scanner.nextLine();
+                    cambiarContraseniaEmpleado(contrasenia);
                     System.out.println("Contraseña cambiada con exito!");
 
 
@@ -115,7 +113,7 @@ public class MenuEmpleado {
     //FUNCIONES EMPLEADO////////////////////////////////////
     public boolean marcarTareaCompletada(String tarea, Usuario empleado){
 
-        boolean verificacion=false;
+        boolean verificacion = true;
 
         ArrayList<Tarea> tareas = empleado.getTareas();
 
@@ -127,44 +125,41 @@ public class MenuEmpleado {
 
                 verificacion=true;
 
-                break;
-
-
-
-
             }else{
 
                 verificacion=false;
 
             }
-
         }
-
         return verificacion;
 
     }
 
     public boolean curarAnimal(String especie){
 
-        boolean verificacion = false;
+        boolean verificacion = true;
 
         ArrayList<Animal> animales = zoo.getColeccionAnimal().listado();
 
         for(int i=0; i<animales.size(); i++){
+
             if(animales.get(i).getEspecie().equals(especie)){
-                if (animales.get(i).getEstaEnfermo()){
-                    animales.get(i).setEstaEnfermo(false);
-                    verificacion=true;
-                }
+
+                animales.get(i).setEstaEnfermo(true);
+
+                verificacion=true;
+
+            }else{
+
+                verificacion=false;
+            }
         }
         return verificacion;
+
     }
 
-    public void cambiarContraseñaEmpleado(String contrasenia){
-
+    public void cambiarContraseniaEmpleado(String contrasenia){
         empleado.setContrasenia(contrasenia);
-
-
     }
 
 
