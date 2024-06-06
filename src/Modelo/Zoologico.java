@@ -51,15 +51,25 @@ public class Zoologico {
         this.coleccionAnimal = coleccionAnimal;
     }
 
+    public LocalDate getFechaDeinicio() {
+        return fechaDeinicio;
+    }
 
+    public LocalDate getFechaActual() {
+        return fechaActual;
+    }
+
+    public HashMap<LocalDate, Reporte> getHistorial() {
+        return historial;
+    }
+
+    public void setHistorial(HashMap<LocalDate, Reporte> historial) {
+        this.historial = historial;
+    }
     //============================
     //MÉTODOS
     //============================
 
-    public void generar_y_guardar_reporte(){
-        //Genera un reporte, y después lo guarda en nuestro hashmap!
-        //utiliza como clave del hashmap fechaActual
-    }
     public int buscarXusuarioYcontra(String usuario, String contra){
         int posicion = 0, posicionReal = -1;
         for(Usuario usuario1: getColeccionUsuario().gettArrayList()){
@@ -157,9 +167,6 @@ public class Zoologico {
     }
 
 
-
-
-//////////////////////////////////////////
 
 
 
