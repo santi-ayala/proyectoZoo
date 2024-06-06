@@ -27,7 +27,7 @@ public class Animal implements Serializable {
         habitat = habitatJson(random);//json
         this.especie = especieJson(random); //json
         this.cantidadVisitas = visitas();
-        this.estaEnfermo = estadoSalud();
+        this.estaEnfermo = randomEstadoSalud();
         this.edad = edadRandom();
         this.observaciones = observaciones ;
     }
@@ -36,7 +36,7 @@ public class Animal implements Serializable {
         this.especie = especie;
         this.habitat = habitat;
         this.cantidadVisitas = visitas();
-        this.estaEnfermo =  estadoSalud();
+        this.estaEnfermo =  randomEstadoSalud();
         this.edad = edad;
         this.dieta = dieta;
         this.observaciones = observaciones;
@@ -91,7 +91,7 @@ public class Animal implements Serializable {
         Random random =new Random();
         return random.nextInt(1500) + 1;
     } //Esta funcion te retorna de manera random las visitas
-    public boolean estadoSalud(){
+    public boolean randomEstadoSalud(){
         boolean salud = false;
         Random random =new Random();
         int randomNumber = random.nextInt(2);
@@ -157,14 +157,14 @@ public class Animal implements Serializable {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "especie='" + especie + '\'' +
-                ", habitat='" + habitat + '\'' +
-                ", cantidadVisitas=" + cantidadVisitas +
-                ", salud=" + estaEnfermo +
-                ", edad=" + edad +
-                ", dieta='" + dieta + '\'' +
-                ", observaciones='" + observaciones + '\'' +
+        return "Animal: " +
+                "Especie: '" + especie + '\'' +
+                ", Habitat:'" + habitat + '\'' +
+                ", cantidadVisitas: " + cantidadVisitas +
+                ", EstaEnfermo: " + estaEnfermo +
+                ", Edad:" + edad +
+                ", Dieta:'" + dieta + '\'' +
+                ", Observaciones:" + observaciones + '\'' +
                 '}';
     }
     public boolean equals(Object o) {
