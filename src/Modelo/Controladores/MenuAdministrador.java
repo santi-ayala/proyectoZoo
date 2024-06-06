@@ -99,19 +99,25 @@ public class MenuAdministrador {
                     System.out.println("Contraseña: ");
                     contra = scanner.nextLine();
 
+                    //devuelve -1 en posición no encontrada
                     pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
 
+                    boolean esVerdadero = false;
+                    try {
+                        //con cualquier posición ilegal del array es un acceso ilegal!
+                        esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().listado().get(pos));
+                    } catch (IndexOutOfBoundsException e) {
+                        //la logica aparentemente funciona bien
+                        //no soy quien para cuestionarla
 
-                    //con cualquier posición ilegal del array es un acceso ilegal!
-                    // encerrar en un try-catch
+                    }
 
-                    //TODO: reemplazar                                                                  getArrayList con listado
-                    boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().listado().get(pos));
                     if (esVerdadero) {
                         System.out.println("Eliminado correctamente");
                     } else {
                         System.out.println("Error... ");
                     }
+
                     break;
                 case "3":
                     System.out.println("Nombre de usuario original: ");
