@@ -89,7 +89,12 @@ public class MenuAdministrador {
 
                     Usuario usuario = new Usuario(nombreUsuario, contra, TipoUsuario.EMPLEADO, nombre);
 
-                    zoo.getColeccionUsuario().darDeAlta(usuario);
+                    boolean b = zoo.getColeccionUsuario().darDeAlta(usuario);
+                    if(b){
+                        System.out.println("Se agrego correctamente");
+                    }else{
+                        System.out.println("Se elimino correctamente");
+                    }
                     break;
 
                 case "2":
@@ -99,13 +104,19 @@ public class MenuAdministrador {
                     System.out.println("Contraseña: ");
                     contra = scanner.nextLine();
 
+                    //devuelve -1 en posición no encontrada
                     pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
-                    boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().gettArrayList().get(pos));
-                    if (esVerdadero) {
-                        System.out.println("Eliminado correctamente");
-                    } else {
-                        System.out.println("Error... ");
+                    if(pos!=-1) {
+                        boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().listado().get(pos));
+                        if (esVerdadero) {
+                            System.out.println("Eliminado correctamente");
+                        } else {
+                            System.out.println("Error... ");
+                        }
+                    }else{
+                        System.out.println("No se encontro el usuario");
                     }
+
                     break;
                 case "3":
                     System.out.println("Nombre de usuario original: ");
@@ -116,7 +127,7 @@ public class MenuAdministrador {
 
                     pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
                     if (pos != -1) {
-                        Usuario usuario1 = zoo.getColeccionUsuario().gettArrayList().get(pos);
+                        Usuario usuario1 = zoo.getColeccionUsuario().listado().get(pos);
 
                         System.out.println("Nombre aux: ");
                         usuarioAUX = scanner.nextLine();
@@ -140,7 +151,7 @@ public class MenuAdministrador {
 
                     pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
                     if (pos != -1) {
-                        Usuario usuario1 = zoo.getColeccionUsuario().gettArrayList().get(pos);
+                        Usuario usuario1 = zoo.getColeccionUsuario().listado().get(pos);
 
                         System.out.println("Contraseña nueva: ");
                         contraAUX = scanner.nextLine();
@@ -215,7 +226,7 @@ public class MenuAdministrador {
                     posicion = zoo.buscarXespecieYhabitatYedad(especie, habitat, edad);
                     if (posicion != -1) {
 
-                        Animal animal1 = zoo.getColeccionAnimal().gettArrayList().get(posicion);
+                        Animal animal1 = zoo.getColeccionAnimal().listado().get(posicion);
 
                         esVerdadero = zoo.getColeccionAnimal().darDeBaja(animal1);
                         if (esVerdadero) {
@@ -255,7 +266,7 @@ public class MenuAdministrador {
 
                     pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
                     if (pos != -1) {
-                        Usuario usuario = zoo.getColeccionUsuario().gettArrayList().get(pos);
+                        Usuario usuario = zoo.getColeccionUsuario().listado().get(pos);
 
                         System.out.println("Tarea a asignar: ");
 
