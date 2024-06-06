@@ -1,11 +1,9 @@
 package Modelo.Controladores;
 
-import Modelo.ColeccionArray;
-import Modelo.Usuario;
-import Modelo.Utils;
-import Modelo.Zoologico;
+import Modelo.*;
 
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import static Modelo.Utils.scanner;
@@ -56,7 +54,7 @@ public class MenuEmpleado {
                     String tarea;
                     tarea= scanner.nextLine();
                     boolean verificacion;
-                   verificacion = zoo.marcarTareaCompletada(tarea, empleado);
+                   verificacion = marcarTareaCompletada(tarea, empleado);
 
                    if(verificacion){
                        System.out.println("Tarea completada!");
@@ -73,7 +71,7 @@ public class MenuEmpleado {
                     String especie;
                     especie = scanner.nextLine();
                    // boolean verificacion;
-                    verificacion = zoo.curarAnimal(especie);
+                    verificacion = curarAnimal(especie);
 
                     if(verificacion){
                         System.out.println("Felcitaciones, buen trabajo!");
@@ -92,6 +90,12 @@ public class MenuEmpleado {
                     break;
                 case "4":
                     Utils.limpiarPantalla();
+                    System.out.println("Ingrese la nueva contraseña: ");
+                    String contraseña;
+                    contraseña=scanner.nextLine();
+                    cambiarContraseñaEmpleado(contraseña);
+                    System.out.println("Contraseña cambiada con exito!");
+
 
                     break;
                 case "5":
@@ -105,5 +109,74 @@ public class MenuEmpleado {
             }
         }
     }
+
+    //FUNCIONES EMPLEADO////////////////////////////////////
+    public boolean marcarTareaCompletada(String tarea, Usuario empleado){
+
+        boolean verificacion = true;
+
+        ArrayList<Tarea> tareas = empleado.getTareas();
+
+        for(int i=0; i<tareas.size(); i++){
+
+            if(tareas.get(i).getAccion().equals(tarea)){
+
+                tareas.get(i).setCompletado(true);
+
+                verificacion=true;
+
+
+
+
+            }else{
+
+                verificacion=false;
+
+            }
+
+        }
+
+        return verificacion;
+
+    }
+
+    public boolean curarAnimal(String especie){
+
+        boolean verificacion = true;
+
+        ArrayList<Animal> animales = zoo.getColeccionAnimal().listado();
+
+        for(int i=0; i<animales.size(); i++){
+
+            if(animales.get(i).getEspecie().equals(especie)){
+
+                animales.get(i).setEstaEnfermo(true);
+
+                verificacion=true;
+
+
+
+
+            }else{
+
+                verificacion=false;
+
+            }
+
+        }
+
+        return verificacion;
+
+    }
+
+    public void cambiarContraseñaEmpleado(String contrasenia){
+
+        empleado.setContrasenia(contrasenia);
+
+
+    }
+
+
+
 
 }
