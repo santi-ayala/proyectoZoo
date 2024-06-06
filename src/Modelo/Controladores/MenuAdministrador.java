@@ -39,21 +39,26 @@ public class MenuAdministrador {
                 case "1":
                     Utils.limpiarPantalla();
                     administrarEmpleados();
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "2":
                     Utils.limpiarPantalla();
                     administrarAnimales();
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "3":
                     Utils.limpiarPantalla();
                     administrarTareas();
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "4":
                     Utils.limpiarPantalla();
                     verReportes();
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "5":
                     Utils.limpiarPantalla();
+                    guardarZoo(archivoZoo,zoo);
 
                     break;
                 case "6":
@@ -101,7 +106,7 @@ public class MenuAdministrador {
                     boolean b = zoo.getColeccionUsuario().darDeAlta(usuario);
                     if(b){
                         System.out.println("Se agrego correctamente");
-                        guardarZoo(archivoZoo,zoo);
+
                     }else{
                         System.out.println("Se elimino correctamente");
                     }
@@ -120,7 +125,7 @@ public class MenuAdministrador {
                         boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().listado().get(pos));
                         if (esVerdadero) {
                             System.out.println("Eliminado correctamente");
-                            guardarZoo(archivoZoo,zoo);
+
                         } else {
                             System.out.println("Error... ");
                         }
@@ -146,7 +151,7 @@ public class MenuAdministrador {
                         boolean bo = zoo.getColeccionUsuario().modificar(usuario1, nuevo);
                         if (bo) {
                             System.out.println("Proceso Exitoso");
-                            guardarZoo(archivoZoo,zoo);
+
                         } else {
                             System.out.println("Vuelva a intertarlo");
                         }
@@ -171,7 +176,6 @@ public class MenuAdministrador {
                         boolean bo = zoo.getColeccionUsuario().modificar(usuario1, nuevo);
                         if (bo) {
                             System.out.println("Proceso Exitoso");
-                            guardarZoo(archivoZoo,zoo);
                         } else {
                             System.out.println("Vuelva a intertarlo");
                         }
