@@ -112,6 +112,8 @@ public class MenuAdministrador {
                         } else {
                             System.out.println("Error... ");
                         }
+                    }else{
+                        System.out.println("No se encontro el usuario");
                     }
                     break;
                 case "3":
