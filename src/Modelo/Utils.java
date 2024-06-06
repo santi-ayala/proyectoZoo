@@ -48,7 +48,6 @@ public class Utils {
                 Reporte reporte = (Reporte) objectInputStream.readObject();
                 localDateReporteHashMap.put(reporte.getFecha(),reporte);
             }
-
         }catch (IOException e){
             e.getMessage();
 

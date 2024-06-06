@@ -11,7 +11,7 @@ public class Usuario {
     private String usuario;
     private String contrasenia;
     private TipoUsuario tipo;
-    private ArrayList<Tarea> tareas;
+    protected ArrayList<Tarea> tareas;
 
     //============================
     //CONSTRUCTORES
@@ -48,6 +48,14 @@ public class Usuario {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public ArrayList<Tarea> getTareas() {
+        return tareas;
+    }
+
+    public void setTareas(ArrayList<Tarea> tareas) {
+        this.tareas = tareas;
     }
 
     @Override
