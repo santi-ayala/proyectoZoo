@@ -13,8 +13,8 @@ public class Utils {
         System.out.flush();
     }
 
-    public static void limpiarScanner(){
-        while (scanner.hasNextLine()) {
+    public static void limpiarScanner() throws IOException {
+        while (System.in.available() > 0) {
             scanner.nextLine();
         }
     }
@@ -37,6 +37,7 @@ public class Utils {
             e.getMessage();
         }
     }
+
     public static HashMap<LocalDate,Reporte> leerReporte(String archivo){
         ObjectInputStream objectInputStream = null;
         HashMap<LocalDate,Reporte> localDateReporteHashMap = new HashMap<>();

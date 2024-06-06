@@ -20,6 +20,7 @@ public class Usuario {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
         this.tipo = tipo;
+        this.nombre = nombre;
     }
 
     //============================

@@ -11,17 +11,6 @@ import static Modelo.Utils.scanner;
 
 public class Main {
 
-    public static void limpiarPantalla(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
-    public static void limpiarScanner(){
-        while (scanner.hasNextLine()) {
-            scanner.nextLine();
-        }
-    }
-
     public static void main(String[] args) throws Exception {
         boolean x = true;
         String eleccion;
@@ -43,19 +32,19 @@ public class Main {
                     nuevoZoologico();
                     break;
                 default:
-                    Main.limpiarPantalla();
+                    Utils.limpiarPantalla();
             }
         }
 
-        Main.limpiarPantalla();
+        Utils.limpiarPantalla();
         System.out.println("Gracias por confiar en Zoo Manager!");
-        scanner.nextLine();
+
         scanner.close();
     }
 
     private static void nuevoZoologico() {
-        Main.limpiarPantalla();
-        Main.limpiarScanner();
+        Utils.limpiarPantalla();
+
 
         System.out.println("Ingrese el usuario de su nuevo administrador");
         String usuario = scanner.nextLine();
