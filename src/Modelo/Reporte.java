@@ -52,10 +52,10 @@ public class Reporte implements Serializable {
     public String toString() {
         //FIXME: esta re varela este tostring
         return "Reporte{" +
-                "balance=" + balance +
+                "Balance: " + balance +
                 //", ingreso=" + ingreso +
                 //", egreso=" + egreso +
-                ", animalEstrella=" + animalEstrella +
+                ", Animal Estrella: " + animalEstrella +
                 ", animalEnfermos=" + animalEnfermos +
                 ", empleadoEstrella=" + empleadoEstrella +
                 ", fecha=" + fecha +

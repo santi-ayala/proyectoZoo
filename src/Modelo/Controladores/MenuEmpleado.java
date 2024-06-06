@@ -146,31 +146,18 @@ public class MenuEmpleado {
 
     public boolean curarAnimal(String especie){
 
-        boolean verificacion = true;
+        boolean verificacion = false;
 
         ArrayList<Animal> animales = zoo.getColeccionAnimal().listado();
 
         for(int i=0; i<animales.size(); i++){
-
             if(animales.get(i).getEspecie().equals(especie)){
-
-                animales.get(i).setEstaEnfermo(true);
-
-                verificacion=true;
-
-
-
-
-            }else{
-
-                verificacion=false;
-
-            }
-
+                if (animales.get(i).getEstaEnfermo()){
+                    animales.get(i).setEstaEnfermo(false);
+                    verificacion=true;
+                }
         }
-
         return verificacion;
-
     }
 
     public void cambiarContraseñaEmpleado(String contrasenia){
