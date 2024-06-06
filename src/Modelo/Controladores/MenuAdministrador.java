@@ -82,7 +82,6 @@ public class MenuAdministrador {
             System.out.println("4) Cambiar contraseña");
             System.out.println("5) Salir");
 
-
             String eleccion = scanner.nextLine();
             String nombre;
             String nombreUsuario;
@@ -152,6 +151,7 @@ public class MenuAdministrador {
                         boolean bo = zoo.getColeccionUsuario().modificar(usuario1, nuevo);
                         if (bo) {
                             System.out.println("Proceso Exitoso");
+
                         } else {
                             System.out.println("Vuelva a intertarlo");
                         }
@@ -226,6 +226,7 @@ public class MenuAdministrador {
                     esVerdadero = zoo.getColeccionAnimal().darDeAlta(animal);
                     if (esVerdadero) {
                         System.out.println("Agregado correctamente");
+                        guardarZoo(archivoZoo,zoo);
                     } else {
                         System.out.println("No se pudo agregar");
                     }
@@ -291,6 +292,7 @@ public class MenuAdministrador {
                         Tarea tarea = new Tarea(scanner.nextLine());
                         usuario.getTareas().add(tarea);
                         usuario.setTareas(usuario.getTareas());
+                        guardarZoo(archivoZoo,zoo);
                     } else {
                         System.out.println("Error: Datos invalidos");
                     }
