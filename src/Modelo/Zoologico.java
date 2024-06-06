@@ -3,6 +3,7 @@ package Modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.random.RandomGenerator;
 
 public class Zoologico {
     //============================
@@ -98,28 +99,99 @@ public class Zoologico {
         return posicionReal;
     }
 
+    public void avanzarSimulacion() {
+        //suponemos q vendemos x cantidad de entradas
+        //digamos q cada entrada sale 20 dolares
+        // 20* 10000 = 200.000
+        //no creo que un zoologico haga más de eso por día
 
+        RandomGenerator random = RandomGenerator.getDefault();
+        balance = +random.nextFloat(100, 200000);
+
+        float perdida = random.nextFloat(100, 50000);
+        float x = balance;
+
+        //si no nos deja quebrados restalo
+        if ((x -= perdida) > 0f)
+            balance -= perdida;
+
+
+        // si el animal no esta enfermo, tiene 10% de chances (ponele) de enfermar
+        for(Animal a: coleccionAnimal.listado()){
+            if ( (a.getEstaEnfermo() == false) && 90 <= random.nextInt(1, 100) ){
+                a.setEstaEnfermo(true);
+            }
+
+            a.setCantidadVisitas(random.nextInt(0, 1000));
+        }
+
+        //iteramos de vuelta porque no me siento bien
+        ArrayList<Animal> animalesEnfermos = new ArrayList<Animal>();
+        int contadorVisitas = 0;
+        Animal animalEstrella = null;
+
+        for(Animal a: coleccionAnimal.listado()){
+            if (a.getEstaEnfermo()){
+                animalesEnfermos.add(a);
+            }
+
+            if(a.getCantidadVisitas() > contadorVisitas){
+                animalEstrella = a;
+                contadorVisitas = a.getCantidadVisitas();
+            }
+        }
+
+        //pido disculpas por todo este método
+        //es tarde
+
+        int topTareasHechas = 0;
+        Usuario empleadoEstrella = null;
+        for (Usuario u: coleccionUsuario.listado()){
+            ArrayList<Tarea> listaTareas = u.getTareas();
+            int tareasHechas = 0;
+
+            for (Tarea t : listaTareas){
+                if(t.isCompletado()){
+                    tareasHechas++;
+                }
+            }
+
+            if (tareasHechas > topTareasHechas){
+                topTareasHechas = tareasHechas;
+                empleadoEstrella = u;
+            }
+
+        }
+
+        //TODO: escribir reportes a disco
+        Reporte reporte = new Reporte(balance, animalEstrella, animalesEnfermos, empleadoEstrella);
+        historial.put(fechaActual, reporte);
+        
+        fechaActual = fechaActual.plusDays(1);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    //TODO: mover todo esto a usuarios
     //Mostrar animales
     public void mostrarAnimales(){
-
      ArrayList<Animal> animales = coleccionAnimal.listado();
-
      for(int i=0; i<animales.size();i++){
-
          System.out.println(animales.get(i));
-
      }
-
     }
-
-
-
+    
 //FUNCIONES EMPLEADO////////////////////////////////////
     public boolean marcarTareaCompletada(String tarea, Usuario empleado){
 
         boolean verificacion = true;
 
-        ArrayList<Tarea> tareas = empleado.tareas;
+        ArrayList<Tarea> tareas = empleado.getTareas();
 
         for(int i=0; i<tareas.size(); i++){
 
@@ -138,9 +210,9 @@ public class Zoologico {
 
          }
 
-     }
+        }
 
-    return verificacion;
+        return verificacion;
 
     }
 
@@ -154,7 +226,7 @@ public class Zoologico {
 
             if(animales.get(i).getEspecie().equals(especie)){
 
-                animales.get(i).setSalud(true);
+                animales.get(i).setEstaEnfermo(true);
 
                 verificacion=true;
 

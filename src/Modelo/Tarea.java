@@ -15,6 +15,10 @@ public class Tarea {
         return accion;
     }
 
+    public boolean isCompletado() {
+        return completado;
+    }
+
     public void setCompletado(boolean completado) {
         this.completado = completado;
     }

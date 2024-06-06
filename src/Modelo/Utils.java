@@ -62,6 +62,5 @@ public class Utils {
         }
 
         return localDateReporteHashMap;
-
     }
 }

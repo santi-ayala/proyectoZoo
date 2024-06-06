@@ -14,7 +14,7 @@ public class Animal {
     private String especie;
     private String habitat;
     private int cantidadVisitas;
-    private Boolean salud;
+    private Boolean estaEnfermo;
     private int edad;
     private String dieta;
     private String observaciones;
@@ -26,7 +26,7 @@ public class Animal {
         habitat = habitatJson(random);//json
         this.especie = especieJson(random); //json
         this.cantidadVisitas = visitas();
-        this.salud = estadoSalud();
+        this.estaEnfermo = estadoSalud();
         this.edad = edadRandom();
         this.observaciones = observaciones ;
     }
@@ -35,7 +35,7 @@ public class Animal {
         this.especie = especie;
         this.habitat = habitat;
         this.cantidadVisitas = visitas();
-        this.salud =  estadoSalud();
+        this.estaEnfermo =  estadoSalud();
         this.edad = edad;
         this.dieta = dieta;
         this.observaciones = observaciones;
@@ -57,11 +57,11 @@ public class Animal {
     public int getCantidadVisitas() {
         return cantidadVisitas;
     }
-    public Boolean getSalud() {
-        return salud;
+    public Boolean getEstaEnfermo() {
+        return estaEnfermo;
     }
-    public void setSalud(Boolean salud) {
-        this.salud = salud;
+    public void setEstaEnfermo(Boolean estaEnfermo) {
+        this.estaEnfermo = estaEnfermo;
     }
     public int getEdad() {
         return edad;
@@ -80,6 +80,9 @@ public class Animal {
     }
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+    public void setCantidadVisitas(int cantidadVisitas) {
+        this.cantidadVisitas = cantidadVisitas;
     }
 
     //Metodos
@@ -157,7 +160,7 @@ public class Animal {
                 "especie='" + especie + '\'' +
                 ", habitat='" + habitat + '\'' +
                 ", cantidadVisitas=" + cantidadVisitas +
-                ", salud=" + salud +
+                ", salud=" + estaEnfermo +
                 ", edad=" + edad +
                 ", dieta='" + dieta + '\'' +
                 ", observaciones='" + observaciones + '\'' +

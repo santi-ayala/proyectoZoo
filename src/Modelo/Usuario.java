@@ -11,7 +11,10 @@ public class Usuario {
     private String usuario;
     private String contrasenia;
     private TipoUsuario tipo;
-    protected ArrayList<Tarea> tareas;
+
+    //TODO: debería ser privado! hacerlo rompería las funciones en zoologico
+    //me importa un carajo, hay un getter
+    private ArrayList<Tarea> tareas;
 
     //============================
     //CONSTRUCTORES
@@ -21,6 +24,8 @@ public class Usuario {
         this.contrasenia = contrasenia;
         this.tipo = tipo;
         this.nombre = nombre;
+
+        tareas = new ArrayList<Tarea>();
     }
 
     //============================

@@ -22,11 +22,14 @@ public class MenuAdministrador {
 
         while (!quiereSalir) {
             System.out.println("Bienvenido " + admin.getNombre() + "!");
+            System.out.println("\nHoy es el " + zoo.getFechaActual() + "\n");
+
             System.out.println("1) Administrar Empleados");
             System.out.println("2) Administrar Animales");
             System.out.println("3) Administrar Tareas");
             System.out.println("4) Ver reportes");
-            System.out.println("5) Salir");
+            System.out.println("5) Avanzar de día");
+            System.out.println("6) Salir");
 
             eleccion = scanner.nextLine();
 
@@ -48,6 +51,10 @@ public class MenuAdministrador {
                     verReportes();
                     break;
                 case "5":
+                    Utils.limpiarPantalla();
+                    zoo.
+                    break;
+                case "6":
                     Utils.limpiarPantalla();
                     quiereSalir = true;
                     break;

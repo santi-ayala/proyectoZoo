@@ -5,22 +5,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Reporte implements Serializable {
-
+    //===================
     //Atributos
+    //===================
+
+    //FIXME: esto antes tenía ingresos y egresos
+    //hay que hacer q arranque lo antes posible
     private float balance;
-    private float ingreso;
-    private float egreso;
     private Animal animalEstella;
     private ArrayList<Animal>  animalEnfermos;
     private Usuario empleadoEstrella;
     private LocalDate fecha;
 
     //Contructores
-    public Reporte(float balance, float ingreso, float egreso, Animal animalEstella,
-                   ArrayList<Animal> animalEnfermos, Usuario empleadoEstrella) {
+    public Reporte(float balance, Animal animalEstella, ArrayList<Animal> animalEnfermos, Usuario empleadoEstrella) {
         this.balance = balance;
-        this.ingreso = ingreso;
-        this.egreso = egreso;
         this.animalEstella = animalEstella;
         this.animalEnfermos = animalEnfermos;
         this.empleadoEstrella = empleadoEstrella;
