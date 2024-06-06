@@ -6,9 +6,9 @@ public class Tarea {
 
     private boolean completado;
 
-    public Tarea(String accion, boolean completado) {
+    public Tarea(String accion) {
         this.accion = accion;
-        this.completado = completado;
+        this.completado = false;
     }
 
     public String getAccion() {

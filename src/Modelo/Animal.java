@@ -31,6 +31,16 @@ public class Animal {
         this.observaciones = observaciones ;
     }
 
+    public Animal(String especie, String habitat, int edad, String dieta, String observaciones) {
+        this.especie = especie;
+        this.habitat = habitat;
+        this.cantidadVisitas = visitas();
+        this.salud =  estadoSalud();
+        this.edad = edad;
+        this.dieta = dieta;
+        this.observaciones = observaciones;
+    }
+
     //Getters and Setters
     public String getEspecie() {
         return especie;
@@ -141,7 +151,26 @@ public class Animal {
 
     }//Esta funcion devuelve de manera random segun la cantidad de objetos que hay en el Json
 
-
-
-
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "especie='" + especie + '\'' +
+                ", habitat='" + habitat + '\'' +
+                ", cantidadVisitas=" + cantidadVisitas +
+                ", salud=" + salud +
+                ", edad=" + edad +
+                ", dieta='" + dieta + '\'' +
+                ", observaciones='" + observaciones + '\'' +
+                '}';
+    }
+    public boolean equals(Object o) {
+        boolean esFalso = false;
+        if(o != null && o instanceof Animal){
+            Animal animal = (Animal) o;
+            if(animal.getEspecie().equalsIgnoreCase(especie) && animal.getEdad() == edad && animal.getHabitat().equalsIgnoreCase(habitat) ){
+                esFalso = true;
+            }
+        }
+        return esFalso;
+    }
 }
