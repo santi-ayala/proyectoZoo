@@ -62,6 +62,7 @@ public class MenuEmpleado {
 
                        System.out.println("No se encontro la tarea");
                    }
+                    System.out.println(empleado.getTareas().toString());
 
 
                     break;
@@ -79,6 +80,7 @@ public class MenuEmpleado {
 
                         System.out.println("No se encontro la especie");
                     }
+                    System.out.println(zoo.getColeccionAnimal().toString());
 
 
                     break;
@@ -113,7 +115,7 @@ public class MenuEmpleado {
     //FUNCIONES EMPLEADO////////////////////////////////////
     public boolean marcarTareaCompletada(String tarea, Usuario empleado){
 
-        boolean verificacion = true;
+        boolean verificacion=false;
 
         ArrayList<Tarea> tareas = empleado.getTareas();
 
@@ -124,6 +126,8 @@ public class MenuEmpleado {
                 tareas.get(i).setCompletado(true);
 
                 verificacion=true;
+
+                break;
 
 
 
