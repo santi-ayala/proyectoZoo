@@ -31,14 +31,31 @@ public class Reporte implements Serializable {
         return fecha;
     }
 
+    public float getBalance() {
+        return balance;
+    }
 
+    public Animal getAnimalEstrella() {
+        return animalEstrella;
+    }
+
+    public ArrayList<Animal> getAnimalEnfermos() {
+        return animalEnfermos;
+    }
+
+    public Usuario getEmpleadoEstrella() {
+        return empleadoEstrella;
+    }
     //Metodos
 
     @Override
     public String toString() {
+        //FIXME: esta re varela este tostring
         return "Reporte{" +
                 "balance=" + balance +
-                ", animalEstella=" + animalEstella +
+                //", ingreso=" + ingreso +
+                //", egreso=" + egreso +
+                ", animalEstella=" + animalEstrella +
                 ", animalEnfermos=" + animalEnfermos +
                 ", empleadoEstrella=" + empleadoEstrella +
                 ", fecha=" + fecha +

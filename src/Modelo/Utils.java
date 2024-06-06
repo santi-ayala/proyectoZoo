@@ -84,16 +84,15 @@ public class Utils {
         try{
             FileInputStream fileInputStream = new FileInputStream(archivo);
             objectInputStream = new ObjectInputStream(fileInputStream);
+
             Iterator<Map.Entry<LocalDate,Reporte>> entryIterator = localDateReporteHashMap.entrySet().iterator();
             while(true){
                 Reporte reporte = (Reporte) objectInputStream.readObject();
                 localDateReporteHashMap.put(reporte.getFecha(),reporte);
             }
-        }catch (IOException e){
+        }catch (IOException | ClassNotFoundException e){
             e.getMessage();
 
-        } catch (ClassNotFoundException e) {
-            e.getMessage();;
         }
         try {
             objectInputStream.close();
@@ -103,4 +102,15 @@ public class Utils {
 
         return localDateReporteHashMap;
     }
+
+    public static <E> int contarOcurrencias(E e, ArrayList<E> array){
+        int i = 0;
+        for (E elemento : array){
+            if (elemento.equals(e))
+                i++;
+        }
+        return i;
+    }
+
+
 }
