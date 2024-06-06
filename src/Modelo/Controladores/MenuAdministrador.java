@@ -279,10 +279,22 @@ public class MenuAdministrador {
         }
 
         private void verReportes () {
-            System.out.println("1) Buscar reporte por fecha");
-            System.out.println("2) Ver listado de reportes");
-            System.out.println("3) Animal Estrella del mes");
-            System.out.println("4) Empleado Estrella del mes");
+            boolean quiereSalir = false;
+
+            while(!quiereSalir) {
+                System.out.println("1) Buscar reporte por fecha");
+                System.out.println("2) Ver listado de reportes");
+                System.out.println("3) Animal Estrella del mes");
+                System.out.println("4) Empleado Estrella del mes");
+                System.out.println("5) Salir");
+                zoo.setHistorial((Utils.leerReporte("Reporte.date"))); //Agrega todos los cambios
+                String eleccion = scanner.nextLine();
+                switch (eleccion){
+                    case "1":
+
+                        break;
+                }
+            }
 
         }
 
