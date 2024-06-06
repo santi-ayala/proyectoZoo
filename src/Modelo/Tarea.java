@@ -25,4 +25,11 @@ public class Tarea implements Serializable {
         this.completado = completado;
     }
 
+    @Override
+    public String toString() {
+        return "Tarea{" +
+                "accion='" + accion + '\'' +
+                ", completado=" + completado +
+                '}';
+    }
 }

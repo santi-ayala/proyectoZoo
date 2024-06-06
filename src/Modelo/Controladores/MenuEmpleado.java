@@ -50,6 +50,7 @@ public class MenuEmpleado {
             switch (eleccion) {
                 case "1":
                     Utils.limpiarPantalla();
+                    mostrarTareas();
                     System.out.println("Que tarea fue completada?");
                     String tarea;
                     tarea= scanner.nextLine();
@@ -67,7 +68,8 @@ public class MenuEmpleado {
                     break;
                 case "2":
                     Utils.limpiarPantalla();
-                    System.out.println("Que animal fue curado?");
+                    mostrarAnimalesEnfermos();
+                    System.out.println("Ingrese el animal?");
                     String especie;
                     especie = scanner.nextLine();
                    // boolean verificacion;
@@ -113,7 +115,7 @@ public class MenuEmpleado {
     //FUNCIONES EMPLEADO////////////////////////////////////
     public boolean marcarTareaCompletada(String tarea, Usuario empleado){
 
-        boolean verificacion = true;
+        boolean verificacion = false;
 
         ArrayList<Tarea> tareas = empleado.getTareas();
 
@@ -124,10 +126,6 @@ public class MenuEmpleado {
                 tareas.get(i).setCompletado(true);
 
                 verificacion=true;
-
-            }else{
-
-                verificacion=false;
 
             }
         }
@@ -160,6 +158,38 @@ public class MenuEmpleado {
 
     public void cambiarContraseniaEmpleado(String contrasenia){
         empleado.setContrasenia(contrasenia);
+    }
+
+    public void mostrarAnimalesEnfermos() {
+
+        ArrayList<Animal> animales = zoo.getColeccionAnimal().listado();
+
+        System.out.println("Animales enfermos: \n");
+        for(int i=0; i<animales.size();i++){
+
+            if(animales.get(i).getEstaEnfermo()){
+
+                System.out.println(animales.get(i).toString());
+                System.out.println("\n");
+            }
+        }
+
+
+    }
+
+    public void mostrarTareas(){
+
+        ArrayList<Tarea> tareas= empleado.getTareas();
+
+        for(int i=0; i<tareas.size();i++){
+
+            if(!tareas.get(i).isCompletado()){
+
+                System.out.println(tareas.get(i).toString());
+                System.out.println("\n");
+            }
+        }
+
     }
 
 
