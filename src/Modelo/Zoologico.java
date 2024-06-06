@@ -24,7 +24,7 @@ public class Zoologico {
     //CONSTRUCTORES
     //============================
     public Zoologico(String nombreZoo, Usuario admin) {
-        this.nombre = nombre;
+        this.nombre = nombreZoo;
         if(admin.getTipoUsuario() == TipoUsuario.ADMINISTRADOR)
             this.admin = admin;
 
