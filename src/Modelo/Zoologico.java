@@ -55,6 +55,10 @@ public class Zoologico implements Serializable {
         return coleccionUsuario;
     }
 
+    public Usuario getAdmin() {
+        return admin;
+    }
+
     public void setColeccionUsuario(ColeccionArray<Usuario> coleccionUsuario) {
         this.coleccionUsuario = coleccionUsuario;
     }
@@ -90,8 +94,6 @@ public class Zoologico implements Serializable {
         int posicion = 0, posicionReal = -1;
         for(Usuario usuario1: getColeccionUsuario().listado()){
 
-            //si los strings pasados por parametro equivalen a alguno de los usuarios del array de nuestro zoo
-            //TODO: este if ignora capitalización, dudoso
             if(usuario1.getUsuario().equalsIgnoreCase(usuario) && usuario1.getContrasenia().equalsIgnoreCase(contra)){
                 posicionReal = posicion;
             }
