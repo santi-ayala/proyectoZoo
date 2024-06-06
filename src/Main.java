@@ -73,7 +73,6 @@ public class Main {
 
     private static void cargarZoologico() {
         Utils.limpiarPantalla();
-
         Zoologico zoo = leerZoo(archivoZoo);
 
         System.out.println("Ingrese el nombre de usuario ");
@@ -87,9 +86,11 @@ public class Main {
         if (pos != -1){
             Usuario usuario1 = zoo.getColeccionUsuario().listado().get(pos);
             if(usuario1.getTipoUsuario().equals(TipoUsuario.EMPLEADO)){
+                System.out.println("Bienvenido al empleado " + usuario1.getNombre());
                 MenuEmpleado menuEmpleado = new MenuEmpleado(zoo,usuario1);
                 menuEmpleado.mainLoop();
             }else {
+                System.out.println("Bienvenido al administrador " + usuario1.getNombre());
                 MenuAdministrador menuAdministrador = new MenuAdministrador(zoo,usuario1);
                 menuAdministrador.mainLoop();
             }
