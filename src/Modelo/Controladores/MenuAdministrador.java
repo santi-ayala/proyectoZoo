@@ -89,7 +89,12 @@ public class MenuAdministrador {
 
                     Usuario usuario = new Usuario(nombreUsuario, contra, TipoUsuario.EMPLEADO, nombre);
 
-                    zoo.getColeccionUsuario().darDeAlta(usuario);
+                    boolean b = zoo.getColeccionUsuario().darDeAlta(usuario);
+                    if(b){
+                        System.out.println("Se agrego correctamente");
+                    }else{
+                        System.out.println("Se elimino correctamente");
+                    }
                     break;
 
                 case "2":
@@ -101,21 +106,15 @@ public class MenuAdministrador {
 
                     //devuelve -1 en posición no encontrada
                     pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
-
-                    boolean esVerdadero = false;
-                    try {
-                        //con cualquier posición ilegal del array es un acceso ilegal!
-                        esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().listado().get(pos));
-                    } catch (IndexOutOfBoundsException e) {
-                        //la logica aparentemente funciona bien
-                        //no soy quien para cuestionarla
-
-                    }
-
-                    if (esVerdadero) {
-                        System.out.println("Eliminado correctamente");
-                    } else {
-                        System.out.println("Error... ");
+                    if(pos!=-1) {
+                        boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().listado().get(pos));
+                        if (esVerdadero) {
+                            System.out.println("Eliminado correctamente");
+                        } else {
+                            System.out.println("Error... ");
+                        }
+                    }else{
+                        System.out.println("No se encontro el usuario");
                     }
 
                     break;
