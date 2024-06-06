@@ -38,8 +38,6 @@ public class Reporte implements Serializable {
     public String toString() {
         return "Reporte{" +
                 "balance=" + balance +
-                ", ingreso=" + ingreso +
-                ", egreso=" + egreso +
                 ", animalEstella=" + animalEstella +
                 ", animalEnfermos=" + animalEnfermos +
                 ", empleadoEstrella=" + empleadoEstrella +

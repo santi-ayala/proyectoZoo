@@ -37,6 +37,40 @@ public class Utils {
             e.getMessage();
         }
     }
+    public static void guardarZoo(String archivo,Zoologico zoologico){
+        ObjectOutputStream outputStream = null;
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(archivo);
+            outputStream = new ObjectOutputStream(fileOutputStream);
+            outputStream.writeObject(zoologico);
+        }catch (IOException e){
+            e.getMessage();
+        }
+        try {
+            outputStream.close();
+        } catch (IOException e) {
+            e.getMessage();
+        }
+    }
+    public static Zoologico leerZoo(String archivo){
+        ObjectInputStream inputStream = null;
+        Zoologico zoologico = null;
+        try{
+            FileInputStream fileInputStream = new FileInputStream(archivo);
+            inputStream = new ObjectInputStream(fileInputStream);
+            zoologico = (Zoologico) inputStream.readObject();
+        }catch (IOException e){
+
+        } catch (ClassNotFoundException e) {
+            e.getMessage();
+        }
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            e.getMessage();
+        }
+        return zoologico;
+    }
 
     public static HashMap<LocalDate,Reporte> leerReporte(String archivo){
         ObjectInputStream objectInputStream = null;

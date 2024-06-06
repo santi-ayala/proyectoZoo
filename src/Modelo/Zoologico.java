@@ -88,6 +88,20 @@ public class Zoologico {
         return posicionReal;
     }
 
+    @Override
+    public String toString() {
+        return "Zoologico{" +
+                "nombre='" + nombre + '\'' +
+                ", admin=" + admin +
+                ", coleccionUsuario=" + coleccionUsuario +
+                ", coleccionAnimal=" + coleccionAnimal +
+                ", balance=" + balance +
+                ", fechaDeinicio=" + fechaDeinicio +
+                ", fechaActual=" + fechaActual +
+                ", historial=" + historial +
+                '}';
+    }
+
     public int buscarXespecieYhabitatYedad(String especie, String habitat, int edad){
         int posicion = 0, posicionReal = -1;
         for(Animal animal: getColeccionAnimal().listado()){

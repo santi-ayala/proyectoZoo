@@ -2,9 +2,11 @@ package Modelo.Controladores;
 
 import Modelo.*;
 
+import static Modelo.Utils.guardarZoo;
 import static Modelo.Utils.scanner;
 
 public class MenuAdministrador {
+    public static String archivoZoo = "ArchivoZoo.date";
     Zoologico zoo;
     Usuario admin;
 
@@ -52,7 +54,7 @@ public class MenuAdministrador {
                     break;
                 case "5":
                     Utils.limpiarPantalla();
-                    
+
                     break;
                 case "6":
                     Utils.limpiarPantalla();
@@ -99,6 +101,7 @@ public class MenuAdministrador {
                     boolean b = zoo.getColeccionUsuario().darDeAlta(usuario);
                     if(b){
                         System.out.println("Se agrego correctamente");
+                        guardarZoo(archivoZoo,zoo);
                     }else{
                         System.out.println("Se elimino correctamente");
                     }
@@ -117,6 +120,7 @@ public class MenuAdministrador {
                         boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().listado().get(pos));
                         if (esVerdadero) {
                             System.out.println("Eliminado correctamente");
+                            guardarZoo(archivoZoo,zoo);
                         } else {
                             System.out.println("Error... ");
                         }
@@ -142,6 +146,7 @@ public class MenuAdministrador {
                         boolean bo = zoo.getColeccionUsuario().modificar(usuario1, nuevo);
                         if (bo) {
                             System.out.println("Proceso Exitoso");
+                            guardarZoo(archivoZoo,zoo);
                         } else {
                             System.out.println("Vuelva a intertarlo");
                         }
@@ -166,6 +171,7 @@ public class MenuAdministrador {
                         boolean bo = zoo.getColeccionUsuario().modificar(usuario1, nuevo);
                         if (bo) {
                             System.out.println("Proceso Exitoso");
+                            guardarZoo(archivoZoo,zoo);
                         } else {
                             System.out.println("Vuelva a intertarlo");
                         }
@@ -216,6 +222,7 @@ public class MenuAdministrador {
                     esVerdadero = zoo.getColeccionAnimal().darDeAlta(animal);
                     if (esVerdadero) {
                         System.out.println("Agregado correctamente");
+                        guardarZoo(archivoZoo,zoo);
                     } else {
                         System.out.println("No se pudo agregar");
                     }
@@ -238,6 +245,7 @@ public class MenuAdministrador {
                         esVerdadero = zoo.getColeccionAnimal().darDeBaja(animal1);
                         if (esVerdadero) {
                             System.out.println("Se logro dar de baja al animal");
+                            guardarZoo(archivoZoo,zoo);
                         } else {
                             System.out.println("No se logro, vuelva intentarlo");
                         }
@@ -280,6 +288,7 @@ public class MenuAdministrador {
                         Tarea tarea = new Tarea(scanner.nextLine());
                         usuario.getTareas().add(tarea);
                         usuario.setTareas(usuario.getTareas());
+                        guardarZoo(archivoZoo,zoo);
                     } else {
                         System.out.println("Error: Datos invalidos");
                     }
