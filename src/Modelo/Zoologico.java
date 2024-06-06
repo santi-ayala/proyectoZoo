@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.spi.ResourceBundleProvider;
 
 public class Zoologico {
     //============================
@@ -27,9 +28,13 @@ public class Zoologico {
         if(admin.getTipoUsuario() == TipoUsuario.ADMINISTRADOR)
             this.admin = admin;
 
-
+        coleccionUsuario = new ColeccionArray<Usuario>();
+        coleccionAnimal = new ColeccionArray<Animal>();
         balance = 0f;
+        fechaDeinicio = LocalDate.now();
+        fechaActual = fechaDeinicio;
 
+        historial = new HashMap<LocalDate, Reporte>();
     }
     //============================
     //Getter and Setters
