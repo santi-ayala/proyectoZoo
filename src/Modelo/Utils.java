@@ -62,4 +62,15 @@ public class Utils {
 
         return localDateReporteHashMap;
     }
+
+    public static <E> int contarOcurrencias(E e, ArrayList<E> array){
+        int i = 0;
+        for (E elemento : array){
+            if (elemento.equals(e))
+                i++;
+        }
+        return i;
+    }
+
+
 }
