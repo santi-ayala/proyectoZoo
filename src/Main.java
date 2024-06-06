@@ -1,9 +1,6 @@
+import Modelo.*;
 import Modelo.Controladores.MenuAdministrador;
 import Modelo.Controladores.MenuEmpleado;
-import Modelo.TipoUsuario;
-import Modelo.Usuario;
-import Modelo.Zoologico;
-import Modelo.Utils;
 
 import java.awt.*;
 
@@ -59,9 +56,17 @@ public class Main {
         System.out.println("Ingrese un nombre para su zoologico!");
         String nombreZoo = scanner.nextLine();
 
+
+
         Usuario admin = new Usuario(usuario, contrasenia, TipoUsuario.ADMINISTRADOR, nombreApellido);
         Zoologico zoo = new Zoologico(nombreZoo, admin);
+
+        for(int i = 0 ; i <15 ; i++){
+            Animal animal = new Animal("");
+            zoo.getColeccionAnimal().darDeAlta(animal);
+        }
         guardarZoo(archivoZoo,zoo);
+
 
         System.out.println("Su zoolgico ha sido creado con exito!\nPulse cualquier tecla para continuar");
         scanner.nextLine();
@@ -114,6 +119,5 @@ public class Main {
 
     }
 
-    //COMENTARIO DE PRUEBA
 
 }
