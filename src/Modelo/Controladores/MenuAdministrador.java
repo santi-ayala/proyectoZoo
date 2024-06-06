@@ -66,6 +66,7 @@ public class MenuAdministrador {
                 System.out.println("2) Eliminar");
                 System.out.println("3) Cambiar usuario");
                 System.out.println("4) Cambiar contraseña");
+                System.out.println("5) Salir");
 
                 String eleccion = scanner.nextLine();
                 String nombre;
@@ -154,6 +155,8 @@ public class MenuAdministrador {
                             System.out.println("No se encontro el usuario");
                         }
                         break;
+                    case "5":
+                        break;
                     default:
                         System.out.println("Opción incorrecta");
                         break;
@@ -168,6 +171,7 @@ public class MenuAdministrador {
 
              System.out.println("1) Dar de alta");
              System.out.println("2) Eliminar");
+             System.out.println("3) Salir");
              String eleccion = scanner.nextLine();
              String especie, habitat, dieta, observaciones;
              int edad, posicion=0;
@@ -223,6 +227,8 @@ public class MenuAdministrador {
                          System.out.println("No se encontro el animal");
                      }
                      break;
+                 case "3":
+                     break;
                  default:
                      System.out.println("Opción incorrecta");
                      break;
@@ -239,6 +245,7 @@ public class MenuAdministrador {
             while(!quiereSalir) {
 
                 System.out.println("1) Asignar una tarea");
+                System.out.println("2) Salir");
 
                 String eleccion = scanner.nextLine();
                 switch (eleccion) {
@@ -261,6 +268,8 @@ public class MenuAdministrador {
                         }else {
                             System.out.println("Error: Datos invalidos");
                         }
+                        break;
+                    case "2":
                         break;
                     default:
                         System.out.println("Opción incorrecta");
