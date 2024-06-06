@@ -255,9 +255,9 @@ public class MenuAdministrador {
                     habitat = scanner.nextLine();
 
                     System.out.println("Edad: ");
-                    edad = scanner.nextInt();
+                    edadi = scanner.nextInt();
 
-                    posicion = zoo.buscarXespecieYhabitatYedad(especie, habitat, edad);
+                    posicion = zoo.buscarXespecieYhabitatYedad(especie, habitat, edadi);
                     if (posicion != -1) {
 
                         Animal animal1 = zoo.getColeccionAnimal().listado().get(posicion);
