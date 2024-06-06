@@ -2,9 +2,7 @@ package Modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.spi.ResourceBundleProvider;
 
 public class Zoologico {
     //============================
@@ -77,7 +75,10 @@ public class Zoologico {
 
     public int buscarXusuarioYcontra(String usuario, String contra){
         int posicion = 0, posicionReal = -1;
-        for(Usuario usuario1: getColeccionUsuario().gettArrayList()){
+        for(Usuario usuario1: getColeccionUsuario().listado()){
+
+            //si los strings pasados por parametro equivalen a alguno de los usuarios del array de nuestro zoo
+            //TODO: este if ignora capitalización, dudoso
             if(usuario1.getUsuario().equalsIgnoreCase(usuario) && usuario1.getContrasenia().equalsIgnoreCase(contra)){
                 posicionReal = posicion;
             }
@@ -85,9 +86,10 @@ public class Zoologico {
         }
         return posicionReal;
     }
+
     public int buscarXespecieYhabitatYedad(String especie, String habitat, int edad){
         int posicion = 0, posicionReal = -1;
-        for(Animal animal: getColeccionAnimal().gettArrayList()){
+        for(Animal animal: getColeccionAnimal().listado()){
             if(animal.getHabitat().equalsIgnoreCase(habitat) && animal.getEspecie().equalsIgnoreCase(especie) && animal.getEdad() == edad){
                 posicionReal = posicion;
             }

@@ -1,7 +1,6 @@
 package Modelo;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class ColeccionArray<T> implements ICRUDE<T> {
     //Atributos
@@ -13,11 +12,7 @@ public class ColeccionArray<T> implements ICRUDE<T> {
         tArrayList = new ArrayList<T>();
     }
 
-    //Getter
 
-    public ArrayList<T> gettArrayList() {
-        return tArrayList;
-    }
 
     ///Metodos
     @Override
