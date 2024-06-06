@@ -1,8 +1,5 @@
+import Modelo.*;
 import Modelo.Controladores.MenuAdministrador;
-import Modelo.TipoUsuario;
-import Modelo.Usuario;
-import Modelo.Zoologico;
-import Modelo.Utils;
 
 import java.awt.*;
 
@@ -45,28 +42,44 @@ public class Main {
     private static void nuevoZoologico() {
         Utils.limpiarPantalla();
 
+        try{
 
-        System.out.println("Ingrese el usuario de su nuevo administrador");
-        String usuario = scanner.nextLine();
+            System.out.println("Ingrese el usuario de su nuevo administrador");
+            String usuario = scanner.nextLine();
 
-        System.out.println("Ingrese su contraseña");
-        String contrasenia = scanner.nextLine();
+            System.out.println("Ingrese su contraseña");
+            String contrasenia = scanner.nextLine();
 
-        System.out.println("Ingrese Nombre y Apellido");
-        String nombreApellido = scanner.nextLine();
+            System.out.println("Ingrese Nombre y Apellido");
+            String nombreApellido = scanner.nextLine();
 
-        System.out.println("Ingrese un nombre para su zoologico!");
-        String nombreZoo = scanner.nextLine();
+            System.out.println("Ingrese un nombre para su zoologico!");
+            String nombreZoo = scanner.nextLine();
 
-        Usuario admin = new Usuario(usuario, contrasenia, TipoUsuario.ADMINISTRADOR, nombreApellido);
-        Zoologico zoo = new Zoologico(nombreZoo, admin);
+            if (usuario.isEmpty() || contrasenia.isEmpty() || nombreApellido.isEmpty() || nombreZoo.isEmpty()) {
+                throw new LoginException("Todos los campos son obligatorios");
+            }
 
-        System.out.println("Su zoolgico ha sido creado con exito!\nPulse cualquier tecla para continuar");
-        scanner.nextLine();
+            Usuario admin = new Usuario(usuario, contrasenia, TipoUsuario.ADMINISTRADOR, nombreApellido);
+            Zoologico zoo = new Zoologico(nombreZoo, admin);
 
-        MenuAdministrador menuAdmin = new MenuAdministrador(zoo, admin);
+            System.out.println("Su zoolgico ha sido creado con exito!\nPulse cualquier tecla para continuar");
+            scanner.nextLine();
 
-        menuAdmin.mainLoop();
+            MenuAdministrador menuAdmin = new MenuAdministrador(zoo, admin);
+
+            menuAdmin.mainLoop();
+
+
+
+
+        }catch (LoginException e){
+
+            System.out.println("Error: " + e.getMessage());
+
+        }
+
+
     }
 
     private static void cargarZoologico() {
