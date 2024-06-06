@@ -6,7 +6,7 @@ import static Modelo.Utils.guardarZoo;
 import static Modelo.Utils.scanner;
 
 public class MenuAdministrador {
-    public static String archivoZoo = "ArchivoZoo.date";
+    public static String archivoZoo = "ArchivoZoo.dat";
     Zoologico zoo;
     Usuario admin;
 

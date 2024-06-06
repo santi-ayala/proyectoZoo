@@ -1,11 +1,12 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.random.RandomGenerator;
 
-public class Zoologico {
+public class Zoologico implements Serializable {
     //============================
     //ATRIBUTOS
     //============================

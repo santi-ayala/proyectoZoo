@@ -37,37 +37,43 @@ public class Utils {
             e.getMessage();
         }
     }
-    public static void guardarZoo(String archivo,Zoologico zoologico){
+    public static void guardarZoo(String archivo, Zoologico zoologico) {
         ObjectOutputStream outputStream = null;
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(archivo);
             outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(zoologico);
-        }catch (IOException e){
-            e.getMessage();
-        }
-        try {
-            outputStream.close();
         } catch (IOException e) {
-            e.getMessage();
+            System.err.println("Error al guardar el zoológico: " + e.getMessage());
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el stream: " + e.getMessage());
+                }
+            }
         }
     }
-    public static Zoologico leerZoo(String archivo){
+    public static Zoologico leerZoo(String archivo) {
         ObjectInputStream inputStream = null;
         Zoologico zoologico = null;
-        try{
+        try {
             FileInputStream fileInputStream = new FileInputStream(archivo);
             inputStream = new ObjectInputStream(fileInputStream);
             zoologico = (Zoologico) inputStream.readObject();
-        }catch (IOException e){
-
-        } catch (ClassNotFoundException e) {
-            e.getMessage();
-        }
-        try {
-            inputStream.close();
         } catch (IOException e) {
-            e.getMessage();
+            System.err.println("Error al leer el zoológico: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.err.println("Clase no encontrada: " + e.getMessage());
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el stream: " + e.getMessage());
+                }
+            }
         }
         return zoologico;
     }
