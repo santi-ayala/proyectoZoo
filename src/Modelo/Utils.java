@@ -44,16 +44,15 @@ public class Utils {
         try{
             FileInputStream fileInputStream = new FileInputStream(archivo);
             objectInputStream = new ObjectInputStream(fileInputStream);
+
             Iterator<Map.Entry<LocalDate,Reporte>> entryIterator = localDateReporteHashMap.entrySet().iterator();
             while(true){
                 Reporte reporte = (Reporte) objectInputStream.readObject();
                 localDateReporteHashMap.put(reporte.getFecha(),reporte);
             }
-        }catch (IOException e){
+        }catch (IOException | ClassNotFoundException e){
             e.getMessage();
 
-        } catch (ClassNotFoundException e) {
-            e.getMessage();;
         }
         try {
             objectInputStream.close();

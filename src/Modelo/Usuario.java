@@ -65,15 +65,16 @@ public class Usuario {
     }
 
     @Override
+    //Nuestro equals compara unicamente nombres de usuario sin diferenciar letras mayusculas
     public boolean equals(Object o) {
-        boolean esFalso = false;
+        boolean sonIguales = false;
         if(o != null && o instanceof Usuario){
             Usuario usuario1 = (Usuario) o;
-            if(usuario1.getUsuario().equalsIgnoreCase(usuario) && usuario1.getContrasenia() == contrasenia ){
-                esFalso = true;
+            if(usuario1.getUsuario().equalsIgnoreCase(usuario)){
+                sonIguales = true;
             }
         }
-        return esFalso;
+        return sonIguales;
     }
 
     @Override

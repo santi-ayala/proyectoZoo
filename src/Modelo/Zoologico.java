@@ -3,6 +3,7 @@ package Modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.random.RandomGenerator;
 
 public class Zoologico {
@@ -10,7 +11,10 @@ public class Zoologico {
     //ATRIBUTOS
     //============================
     private String nombre;
+
     private Usuario admin;
+
+    //Coleccion usuario podría ser un hashmap. Mal ahí
     private ColeccionArray<Usuario> coleccionUsuario;
     private ColeccionArray<Animal> coleccionAnimal;
     private float balance;

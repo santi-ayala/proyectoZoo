@@ -2,6 +2,10 @@ package Modelo.Controladores;
 
 import Modelo.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+
 import static Modelo.Utils.scanner;
 
 public class MenuAdministrador {
@@ -52,7 +56,7 @@ public class MenuAdministrador {
                     break;
                 case "5":
                     Utils.limpiarPantalla();
-                    zoo.
+
                     break;
                 case "6":
                     Utils.limpiarPantalla();
@@ -71,7 +75,7 @@ public class MenuAdministrador {
         while (!quiereSalir) {
             System.out.println("1) Dar de alta");
             System.out.println("2) Eliminar");
-            System.out.println("3) Cambiar usuario");
+            System.out.println("3) Cambiar nombre de usuario");
             System.out.println("4) Cambiar contraseña");
             System.out.println("5) Salir");
 
@@ -100,7 +104,7 @@ public class MenuAdministrador {
                     if(b){
                         System.out.println("Se agrego correctamente");
                     }else{
-                        System.out.println("Se elimino correctamente");
+                        System.out.println("Ese usuario ya existe!");
                     }
                     break;
 
@@ -114,10 +118,12 @@ public class MenuAdministrador {
                     //devuelve -1 en posición no encontrada
                     pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
                     if(pos!=-1) {
+                        //que valor aloja esVerdadero? el indice de get(pos)?
                         boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().listado().get(pos));
                         if (esVerdadero) {
                             System.out.println("Eliminado correctamente");
                         } else {
+                            //FIXME: No tiene mucho sentido este chequeo. Si nuestro get falla es un IndexOutOfBounds
                             System.out.println("Error... ");
                         }
                     }else{
@@ -136,7 +142,7 @@ public class MenuAdministrador {
                     if (pos != -1) {
                         Usuario usuario1 = zoo.getColeccionUsuario().listado().get(pos);
 
-                        System.out.println("Nombre aux: ");
+                        System.out.println("Nombre de usuario nuevo: ");
                         usuarioAUX = scanner.nextLine();
                         Usuario nuevo = new Usuario(usuarioAUX, usuario1.getContrasenia(), usuario1.getTipoUsuario(), usuario1.getNombre());
                         boolean bo = zoo.getColeccionUsuario().modificar(usuario1, nuevo);
@@ -190,6 +196,7 @@ public class MenuAdministrador {
 
             System.out.println("1) Dar de alta");
             System.out.println("2) Eliminar");
+            System.out.println("3) Salir");
             String eleccion = scanner.nextLine();
             String especie, habitat, dieta, observaciones;
             int edad, posicion = 0;
@@ -245,6 +252,9 @@ public class MenuAdministrador {
                         System.out.println("No se encontro el animal");
                     }
                     break;
+                case "3":
+                    quieroSalir = true;
+                    break;
                 default:
                     System.out.println("Opción incorrecta");
                     break;
@@ -254,13 +264,15 @@ public class MenuAdministrador {
         }
     }
 
-    private void administrarTareas() {//Agrega una tarea a un empleado
+    private void administrarTareas() { //Agrega una tarea a un empleado
         boolean quiereSalir = false, esVerdadero;
         String nombreUsuario, contra;
         int pos;
         while (!quiereSalir) {
 
+            //TODO: un administrador deberia poder eliminar tareas
             System.out.println("1) Asignar una tarea");
+            System.out.println("2) Salir");
 
             String eleccion = scanner.nextLine();
             switch (eleccion) {
@@ -268,21 +280,30 @@ public class MenuAdministrador {
                     System.out.println("Usuario: ");
                     nombreUsuario = scanner.nextLine();
 
-                    System.out.println("Contraseña: ");
-                    contra = scanner.nextLine();
+                    Usuario user_a_buscar = null;
 
-                    pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
-                    if (pos != -1) {
-                        Usuario usuario = zoo.getColeccionUsuario().listado().get(pos);
+                    for(Usuario u: zoo.getColeccionUsuario().listado()){
+                        if(u.getUsuario().equalsIgnoreCase(nombreUsuario)){
+                            user_a_buscar = u;
+                        }
+                    }
+
+
+
+                    if (user_a_buscar != null) {
 
                         System.out.println("Tarea a asignar: ");
+                        String accion = scanner.nextLine();
 
-                        Tarea tarea = new Tarea(scanner.nextLine());
-                        usuario.getTareas().add(tarea);
-                        usuario.setTareas(usuario.getTareas());
+                        Tarea tarea = new Tarea(accion);
+                        user_a_buscar.getTareas().add(tarea);
+                        user_a_buscar.setTareas(user_a_buscar.getTareas());
                     } else {
                         System.out.println("Error: Datos invalidos");
                     }
+                    break;
+                case "2":
+                    quiereSalir = true;
                     break;
                 default:
                     System.out.println("Opción incorrecta");
@@ -305,8 +326,40 @@ public class MenuAdministrador {
 
             switch (eleccion) {
                 case "1":
+                    System.out.println("Tenemos reportes desde el " + zoo.getFechaDeinicio() + " hasta " + zoo.getFechaActual());
+                    System.out.println("Que fecha desea ver? (DD-MM-AAAA)");
+                    String inputFecha = scanner.nextLine();
+
+                    LocalDate fecha;
+                    try {
+                        fecha = LocalDate.parse(inputFecha);
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Formato Invalido! Pulse cualquier tecla para continuar");
+                        fecha = null;
+                        scanner.nextLine();
+                    }
+
+                    if (fecha != null) {
+                        boolean rangoInferior = (fecha.isAfter(zoo.getFechaDeinicio()) || fecha.isEqual(zoo.getFechaDeinicio()));
+                        boolean rangoSuperior = (fecha.isBefore(zoo.getFechaActual()) || fecha.isEqual(zoo.getFechaActual()));
+
+                        // si nuestra fecha ingresada se encuentra dentro de nuestro hashmap
+                        if (rangoSuperior && rangoInferior){
+                            Reporte reporteBuscado = zoo.getHistorial().get(fecha);
+
+                            //TODO: hacer un tostring fachero
+                            System.out.println(reporteBuscado);
+                        } else {
+                            System.out.println("La fecha que pidió no esta en el registro. Por favor intente de nuevo");
+                            scanner.nextLine();
+                        }
+                    }
+
+                    Utils.limpiarPantalla();
                     break;
                 case "2":
+
+
                     break;
                 case "3":
                     break;

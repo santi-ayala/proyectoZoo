@@ -36,10 +36,11 @@ public class Reporte implements Serializable {
 
     @Override
     public String toString() {
+        //FIXME: esta re varela este tostring
         return "Reporte{" +
                 "balance=" + balance +
-                ", ingreso=" + ingreso +
-                ", egreso=" + egreso +
+                //", ingreso=" + ingreso +
+                //", egreso=" + egreso +
                 ", animalEstella=" + animalEstella +
                 ", animalEnfermos=" + animalEnfermos +
                 ", empleadoEstrella=" + empleadoEstrella +
