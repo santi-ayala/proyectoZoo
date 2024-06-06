@@ -89,7 +89,12 @@ public class MenuAdministrador {
 
                     Usuario usuario = new Usuario(nombreUsuario, contra, TipoUsuario.EMPLEADO, nombre);
 
-                    zoo.getColeccionUsuario().darDeAlta(usuario);
+                    boolean b = zoo.getColeccionUsuario().darDeAlta(usuario);
+                    if(b){
+                        System.out.println("Se agrego correctamente");
+                    }else{
+                        System.out.println("Se elimino correctamente");
+                    }
                     break;
 
                 case "2":
@@ -100,11 +105,13 @@ public class MenuAdministrador {
                     contra = scanner.nextLine();
 
                     pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
-                    boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().gettArrayList().get(pos));
-                    if (esVerdadero) {
-                        System.out.println("Eliminado correctamente");
-                    } else {
-                        System.out.println("Error... ");
+                    if(pos!=-1) {
+                        boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().gettArrayList().get(pos));
+                        if (esVerdadero) {
+                            System.out.println("Eliminado correctamente");
+                        } else {
+                            System.out.println("Error... ");
+                        }
                     }
                     break;
                 case "3":
