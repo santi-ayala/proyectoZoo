@@ -30,7 +30,7 @@ public class MenuAdministrador {
         String eleccion;
 
         while (!quiereSalir) {
-            System.out.println("Bienvenido " + admin.getNombre() + "!");
+            System.out.println("Bienvenido " + admin.getNombre() + " a " + zoo.getNombre() + "!");
             System.out.println("\nHoy es el " + zoo.getFechaActual() + "\n");
 
             System.out.println("1) Administrar Empleados");
@@ -65,6 +65,7 @@ public class MenuAdministrador {
                     break;
                 case "5":
                     Utils.limpiarPantalla();
+                    zoo.avanzarSimulacion();
                     guardarZoo(archivoZoo,zoo);
                     break;
                 case "6":
@@ -98,7 +99,7 @@ public class MenuAdministrador {
 
             switch (eleccion) {
                 case "1":
-                    System.out.println("Nombre: ");
+                    System.out.println("Nombre y Apellido: ");
                     nombre = scanner.nextLine();
 
                     System.out.println("Usuario: ");
@@ -204,8 +205,8 @@ public class MenuAdministrador {
             System.out.println("2) Eliminar");
             System.out.println("3) Salir");
             String eleccion = scanner.nextLine();
-            String especie, habitat, dieta, observaciones;
-            int edad, posicion = 0;
+            String especie, habitat, dieta, edad,observaciones;
+            int edadi = 0, posicion = 0;
             boolean esVerdadero;
             switch (eleccion) {
                 case "1":
@@ -218,13 +219,25 @@ public class MenuAdministrador {
                     System.out.println("Dieta: ");
                     dieta = scanner.nextLine();
 
-                    System.out.println("Edad: ");
-                    edad = scanner.nextInt();
+                    boolean cast;
+
+                    do {
+                        System.out.println("Edad: ");
+                        edad = scanner.nextLine();
+                        cast = true;
+                        try {
+                            edadi = Integer.parseInt(edad);
+                        } catch (NumberFormatException e){
+                            System.out.println("Ingrese un numero valido!");
+                            cast = false;
+                        }
+                        
+                    }while(cast);
 
                     System.out.println("Observaciones: ");
                     observaciones = scanner.nextLine();
 
-                    Animal animal = new Animal(especie, habitat, edad, dieta, observaciones);
+                    Animal animal = new Animal(especie, habitat, edadi, dieta, observaciones);
 
                     esVerdadero = zoo.getColeccionAnimal().darDeAlta(animal);
                     if (esVerdadero) {
@@ -335,7 +348,7 @@ public class MenuAdministrador {
             switch (eleccion) {
                 case "1":
                     System.out.println("Tenemos reportes desde el " + zoo.getFechaDeinicio() + " hasta " + zoo.getFechaActual());
-                    System.out.println("Que fecha desea ver? (DD-MM-AAAA)");
+                    System.out.println("Que fecha desea ver? (AAAA-MM-DD)");
                     String inputFecha = scanner.nextLine();
 
                     LocalDate fecha;

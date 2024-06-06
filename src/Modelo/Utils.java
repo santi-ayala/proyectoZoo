@@ -55,7 +55,7 @@ public class Utils {
             }
         }
     }
-    public static Zoologico leerZoo(String archivo) {
+    public static Zoologico leerZoo(String archivo) throws IOException {
         ObjectInputStream inputStream = null;
         Zoologico zoologico = null;
         try {
@@ -64,6 +64,8 @@ public class Utils {
             zoologico = (Zoologico) inputStream.readObject();
         } catch (IOException e) {
             System.err.println("Error al leer el zoológico: " + e.getMessage());
+            System.err.println("(Chequee si existe un zoológico guardado!)");
+            throw new IOException();
         } catch (ClassNotFoundException e) {
             System.err.println("Clase no encontrada: " + e.getMessage());
         } finally {

@@ -55,6 +55,11 @@ public class Zoologico implements Serializable {
     //Getter and Setters
     //============================
 
+
+    public String getNombre() {
+        return nombre;
+    }
+
     public ColeccionArray<Usuario> getColeccionUsuario() {
         return coleccionUsuario;
     }
@@ -196,7 +201,7 @@ public class Zoologico implements Serializable {
         }
 
         //TODO: escribir reportes a disco
-        Reporte reporte = new Reporte(balance, animalEstrella, animalesEnfermos, empleadoEstrella);
+        Reporte reporte = new Reporte(balance, animalEstrella, animalesEnfermos, empleadoEstrella, fechaActual);
         historial.put(fechaActual, reporte);
         
         fechaActual = fechaActual.plusDays(1);
