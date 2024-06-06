@@ -11,7 +11,7 @@ import static Modelo.Utils.*;
 
 
 public class Main {
-    public static String archivoZoo = "ArchivoZoo.date";
+    public static String archivoZoo = "ArchivoZoo.dat";
 
     public static void main(String[] args) throws Exception {
         boolean x = true;
@@ -73,8 +73,9 @@ public class Main {
 
     private static void cargarZoologico() {
         Utils.limpiarPantalla();
+
         Zoologico zoo = leerZoo(archivoZoo);
-        System.out.println(zoo);
+
         System.out.println("Ingrese el nombre de usuario ");
         String usuario = scanner.nextLine();
 
@@ -85,7 +86,7 @@ public class Main {
 
         if (pos != -1){
             Usuario usuario1 = zoo.getColeccionUsuario().listado().get(pos);
-            if(usuario1.getTipoUsuario().equals("EMPLEADO")){
+            if(usuario1.getTipoUsuario().equals(TipoUsuario.EMPLEADO)){
                 MenuEmpleado menuEmpleado = new MenuEmpleado(zoo,usuario1);
                 menuEmpleado.mainLoop();
             }else {

@@ -1,8 +1,9 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ColeccionArray<T> implements ICRUDE<T> {
+public class ColeccionArray<T> implements ICRUDE<T>, Serializable {
     //Atributos
     private ArrayList<T> tArrayList;
 

@@ -1,11 +1,12 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.random.RandomGenerator;
 
-public class Zoologico {
+public class Zoologico implements Serializable {
     //============================
     //ATRIBUTOS
     //============================
@@ -34,6 +35,17 @@ public class Zoologico {
         fechaActual = fechaDeinicio;
 
         historial = new HashMap<LocalDate, Reporte>();
+    }
+    public  Zoologico(){
+        this.nombre = "";
+        coleccionUsuario = new ColeccionArray<Usuario>();
+        coleccionAnimal = new ColeccionArray<Animal>();
+        balance = 0f;
+        fechaDeinicio = LocalDate.now();
+        fechaActual = fechaDeinicio;
+
+        historial = new HashMap<LocalDate, Reporte>();
+
     }
     //============================
     //Getter and Setters

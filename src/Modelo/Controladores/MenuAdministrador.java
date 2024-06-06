@@ -6,7 +6,7 @@ import static Modelo.Utils.guardarZoo;
 import static Modelo.Utils.scanner;
 
 public class MenuAdministrador {
-    public static String archivoZoo = "ArchivoZoo.date";
+    public static String archivoZoo = "ArchivoZoo.dat";
     Zoologico zoo;
     Usuario admin;
 
@@ -39,21 +39,26 @@ public class MenuAdministrador {
                 case "1":
                     Utils.limpiarPantalla();
                     administrarEmpleados();
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "2":
                     Utils.limpiarPantalla();
                     administrarAnimales();
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "3":
                     Utils.limpiarPantalla();
                     administrarTareas();
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "4":
                     Utils.limpiarPantalla();
                     verReportes();
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "5":
                     Utils.limpiarPantalla();
+                    guardarZoo(archivoZoo,zoo);
 
                     break;
                 case "6":
@@ -76,6 +81,7 @@ public class MenuAdministrador {
             System.out.println("3) Cambiar usuario");
             System.out.println("4) Cambiar contraseña");
             System.out.println("5) Salir");
+
 
             String eleccion = scanner.nextLine();
             String nombre;
@@ -101,7 +107,7 @@ public class MenuAdministrador {
                     boolean b = zoo.getColeccionUsuario().darDeAlta(usuario);
                     if(b){
                         System.out.println("Se agrego correctamente");
-                        guardarZoo(archivoZoo,zoo);
+
                     }else{
                         System.out.println("Se elimino correctamente");
                     }
@@ -120,7 +126,7 @@ public class MenuAdministrador {
                         boolean esVerdadero = zoo.getColeccionUsuario().darDeBaja(zoo.getColeccionUsuario().listado().get(pos));
                         if (esVerdadero) {
                             System.out.println("Eliminado correctamente");
-                            guardarZoo(archivoZoo,zoo);
+
                         } else {
                             System.out.println("Error... ");
                         }
@@ -146,7 +152,6 @@ public class MenuAdministrador {
                         boolean bo = zoo.getColeccionUsuario().modificar(usuario1, nuevo);
                         if (bo) {
                             System.out.println("Proceso Exitoso");
-                            guardarZoo(archivoZoo,zoo);
                         } else {
                             System.out.println("Vuelva a intertarlo");
                         }
@@ -171,7 +176,6 @@ public class MenuAdministrador {
                         boolean bo = zoo.getColeccionUsuario().modificar(usuario1, nuevo);
                         if (bo) {
                             System.out.println("Proceso Exitoso");
-                            guardarZoo(archivoZoo,zoo);
                         } else {
                             System.out.println("Vuelva a intertarlo");
                         }
@@ -222,7 +226,6 @@ public class MenuAdministrador {
                     esVerdadero = zoo.getColeccionAnimal().darDeAlta(animal);
                     if (esVerdadero) {
                         System.out.println("Agregado correctamente");
-                        guardarZoo(archivoZoo,zoo);
                     } else {
                         System.out.println("No se pudo agregar");
                     }
@@ -288,7 +291,6 @@ public class MenuAdministrador {
                         Tarea tarea = new Tarea(scanner.nextLine());
                         usuario.getTareas().add(tarea);
                         usuario.setTareas(usuario.getTareas());
-                        guardarZoo(archivoZoo,zoo);
                     } else {
                         System.out.println("Error: Datos invalidos");
                     }

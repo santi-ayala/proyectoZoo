@@ -11,7 +11,7 @@ import java.util.Random;
 import static Modelo.Utils.scanner;
 
 public class MenuEmpleado {
-    public static String archivoZoo = "ArchivoZoo.date";
+    public static String archivoZoo = "ArchivoZoo.dat";
     Zoologico zoo;
 
     Usuario empleado;
