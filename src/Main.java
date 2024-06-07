@@ -138,14 +138,12 @@ public class Main {
             int pos = zoo.buscarXusuarioYcontra(usuario,contrasenia);
 
             if(zoo.getAdmin().getUsuario().equals(usuario) && zoo.getAdmin().getContrasenia().equals(contrasenia)){
-                System.out.println("Bienvenido al administrador " + zoo.getAdmin().getNombre());
                 MenuAdministrador menuAdministrador = new MenuAdministrador(zoo,zoo.getAdmin());
                 menuAdministrador.mainLoop();
             }else {
                 if (pos != -1){
                     Usuario usuario1 = zoo.getColeccionUsuario().listado().get(pos);
                     if(usuario1.getTipoUsuario().equals(TipoUsuario.EMPLEADO)){
-                        System.out.println("Bienvenido al empleado " + usuario1.getNombre());
                         MenuEmpleado menuEmpleado = new MenuEmpleado(zoo,usuario1);
                         menuEmpleado.mainLoop();
                     }

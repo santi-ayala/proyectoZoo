@@ -325,6 +325,8 @@ public class MenuAdministrador {
                         Tarea tarea = new Tarea(accion);
                         user_a_buscar.getTareas().add(tarea);
                         user_a_buscar.setTareas(user_a_buscar.getTareas());
+
+                        System.out.println("La tarea se asigno existosamente!");
                         guardarZoo(archivoZoo,zoo);
                     } else {
                         System.out.println("Error: Datos invalidos");
@@ -391,11 +393,37 @@ public class MenuAdministrador {
                     //capaz se podria armar una clase de pager, donde muestre la cantidad de registros que faltan (es posible?)
                     //e incluya una función para romperlo
                     int i = 0;
+                    boolean deseaSeguirViendo = true;
+
                     for (Map.Entry<LocalDate, Reporte> elemento : zoo.getHistorial().entrySet()){
                         Reporte r = elemento.getValue();
+
+                        if(i!=0 && i%10 == 0){ // cada 10 reportes
+                            System.out.println("Desea seguir viendo reportes?");
+
+                            boolean inputInvalido = true;
+
+                            do {
+                                String input = scanner.nextLine();
+                                switch (input){
+                                    case "s":
+                                        inputInvalido = false;
+                                        break;
+                                    case "n":
+                                        inputInvalido = false;
+                                        deseaSeguirViendo = false;
+                                        break;
+                                }
+                            } while (inputInvalido);
+                        }
+
+                        if (!deseaSeguirViendo)
+                            break;
+
                         System.out.println(r);
                         i++;
                     }
+
 
                     System.out.println("Fueron impresos " + i + " elementos");
                     System.out.println("Pulse cualquier tecla para continuar");
