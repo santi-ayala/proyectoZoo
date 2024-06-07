@@ -40,7 +40,7 @@
     "habitat": "Praderas"
   },
   {
-    "especie": "Cocodrillo",
+    "especie": "Cocodrilo",
     "dieta": "Carnívoro",
     "habitat": "Rios"
   },
@@ -60,7 +60,7 @@
     "habitat": "Selva"
   },
   {
-    "especie": "Tigre de vengala",
+    "especie": "Tigre de bengala",
     "dieta": "Carnivoro",
     "habitat": "Selva"
   }

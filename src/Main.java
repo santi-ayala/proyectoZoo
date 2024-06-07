@@ -44,36 +44,75 @@ public class Main {
     private static void nuevoZoologico() {
         limpiarPantalla();
 
-        System.out.println("Ingrese el usuario de su nuevo administrador");
-        String usuario = scanner.nextLine();
+        boolean existeZoologico = true;
+        boolean quiereSobreescribir = true;
 
-        System.out.println("Ingrese su contraseña");
-        String contrasenia = scanner.nextLine();
+        try{
+            leerZoo(archivoZoo);
+        } catch (Exception e){
+            existeZoologico = false;
+        } finally {
+            if (existeZoologico) {
+                System.out.println("Atencion! Ya existe un zoologico en su sistema!");
+                System.out.println("Crear un zoologico nuevo sobreescribira su zoologico existente");
+                System.out.println("¿Desea continuar de todas formas? (s/n)");
 
-        System.out.println("Ingrese Nombre y Apellido");
-        String nombreApellido = scanner.nextLine();
+                boolean inputInvalido = true;
 
-        System.out.println("Ingrese un nombre para su zoologico!");
-        String nombreZoo = scanner.nextLine();
+                do {
+                    String input = scanner.nextLine();
+                    switch (input){
+                        case "s":
+                            inputInvalido = false;
+                            break;
+                        case "n":
+                            quiereSobreescribir = false;
+                            inputInvalido = false;
+                            break;
+                        default:
+                            System.out.println("Ingrese una opción válida!");
+                            break;
+                    }
+                } while (inputInvalido);
+            }
+
+            if (quiereSobreescribir) {
+                System.out.println("Ingrese el usuario de su nuevo administrador");
+                String usuario = scanner.nextLine();
+
+                System.out.println("Ingrese su contraseña");
+                String contrasenia = scanner.nextLine();
+
+                System.out.println("Ingrese Nombre y Apellido");
+                String nombreApellido = scanner.nextLine();
+
+                System.out.println("Ingrese un nombre para su zoologico!");
+                String nombreZoo = scanner.nextLine();
 
 
+                Usuario admin = new Usuario(usuario, contrasenia, TipoUsuario.ADMINISTRADOR, nombreApellido);
+                Zoologico zoo = new Zoologico(nombreZoo, admin);
 
-        Usuario admin = new Usuario(usuario, contrasenia, TipoUsuario.ADMINISTRADOR, nombreApellido);
-        Zoologico zoo = new Zoologico(nombreZoo, admin);
+                for(int i = 0 ; i <15 ; i++){
+                    Animal animal = new Animal("");
+                    zoo.getColeccionAnimal().darDeAlta(animal);
+                }
+                guardarZoo(archivoZoo,zoo);
 
-        for(int i = 0 ; i <15 ; i++){
-            Animal animal = new Animal("");
-            zoo.getColeccionAnimal().darDeAlta(animal);
+
+                System.out.println("Su zoológico ha sido creado con exito!\nPulse cualquier tecla para continuar");
+                scanner.nextLine();
+
+                MenuAdministrador menuAdmin = new MenuAdministrador(zoo, admin);
+
+                menuAdmin.mainLoop();
+            } else {
+                System.out.println("Abortando...");
+            }
         }
-        guardarZoo(archivoZoo,zoo);
 
 
-        System.out.println("Su zoolgico ha sido creado con exito!\nPulse cualquier tecla para continuar");
-        scanner.nextLine();
 
-        MenuAdministrador menuAdmin = new MenuAdministrador(zoo, admin);
-
-        menuAdmin.mainLoop();
     }
 
     private static void cargarZoologico() {
@@ -99,14 +138,12 @@ public class Main {
             int pos = zoo.buscarXusuarioYcontra(usuario,contrasenia);
 
             if(zoo.getAdmin().getUsuario().equals(usuario) && zoo.getAdmin().getContrasenia().equals(contrasenia)){
-                System.out.println("Bienvenido al administrador " + zoo.getAdmin().getNombre());
                 MenuAdministrador menuAdministrador = new MenuAdministrador(zoo,zoo.getAdmin());
                 menuAdministrador.mainLoop();
             }else {
                 if (pos != -1){
                     Usuario usuario1 = zoo.getColeccionUsuario().listado().get(pos);
                     if(usuario1.getTipoUsuario().equals(TipoUsuario.EMPLEADO)){
-                        System.out.println("Bienvenido al empleado " + usuario1.getNombre());
                         MenuEmpleado menuEmpleado = new MenuEmpleado(zoo,usuario1);
                         menuEmpleado.mainLoop();
                     }
@@ -122,3 +159,5 @@ public class Main {
 
 
 }
+
+//comit necesario

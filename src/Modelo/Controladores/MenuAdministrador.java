@@ -31,7 +31,8 @@ public class MenuAdministrador {
 
         while (!quiereSalir) {
             System.out.println("Bienvenido " + admin.getNombre() + " a " + zoo.getNombre() + "!");
-            System.out.println("\nHoy es el " + zoo.getFechaActual() + "\n");
+            System.out.println("\nHoy es el " + zoo.getFechaActual());
+            System.out.println("Su zoologico tiene un balance de $" + zoo.getBalance() + "\n");
 
             System.out.println("1) Administrar Empleados");
             System.out.println("2) Administrar Animales");
@@ -203,7 +204,8 @@ public class MenuAdministrador {
 
             System.out.println("1) Dar de alta");
             System.out.println("2) Eliminar");
-            System.out.println("3) Salir");
+            System.out.println("3) Listar animales");
+            System.out.println("4) Salir");
             String eleccion = scanner.nextLine();
             String especie, habitat, dieta, edad,observaciones;
             int edadi = 0, posicion = 0;
@@ -231,8 +233,9 @@ public class MenuAdministrador {
                             System.out.println("Ingrese un numero valido!");
                             cast = false;
                         }
-                        
-                    }while(cast);
+                        //mientras el cast no se haga
+                        //semanticamente se cae a pedazos, lo sé
+                    }while(!cast);
 
                     System.out.println("Observaciones: ");
                     observaciones = scanner.nextLine();
@@ -274,6 +277,11 @@ public class MenuAdministrador {
                     }
                     break;
                 case "3":
+                    for (Animal a : zoo.getColeccionAnimal().listado()){
+                        System.out.println(a);
+                    }
+                    break;
+                case "4":
                     quieroSalir = true;
                     break;
                 default:
@@ -317,6 +325,8 @@ public class MenuAdministrador {
                         Tarea tarea = new Tarea(accion);
                         user_a_buscar.getTareas().add(tarea);
                         user_a_buscar.setTareas(user_a_buscar.getTareas());
+
+                        System.out.println("La tarea se asigno existosamente!");
                         guardarZoo(archivoZoo,zoo);
                     } else {
                         System.out.println("Error: Datos invalidos");
@@ -383,11 +393,37 @@ public class MenuAdministrador {
                     //capaz se podria armar una clase de pager, donde muestre la cantidad de registros que faltan (es posible?)
                     //e incluya una función para romperlo
                     int i = 0;
+                    boolean deseaSeguirViendo = true;
+
                     for (Map.Entry<LocalDate, Reporte> elemento : zoo.getHistorial().entrySet()){
                         Reporte r = elemento.getValue();
+
+                        if(i!=0 && i%10 == 0){ // cada 10 reportes
+                            System.out.println("Desea seguir viendo reportes?");
+
+                            boolean inputInvalido = true;
+
+                            do {
+                                String input = scanner.nextLine();
+                                switch (input){
+                                    case "s":
+                                        inputInvalido = false;
+                                        break;
+                                    case "n":
+                                        inputInvalido = false;
+                                        deseaSeguirViendo = false;
+                                        break;
+                                }
+                            } while (inputInvalido);
+                        }
+
+                        if (!deseaSeguirViendo)
+                            break;
+
                         System.out.println(r);
                         i++;
                     }
+
 
                     System.out.println("Fueron impresos " + i + " elementos");
                     System.out.println("Pulse cualquier tecla para continuar");
@@ -396,7 +432,7 @@ public class MenuAdministrador {
                 case "3":
                     LocalDate inicioSemanaActual = zoo.getFechaActual().minusWeeks(1);
 
-                    boolean hay7diasDeRegistros = (zoo.getFechaDeinicio().plusWeeks(1)).isAfter(inicioSemanaActual);
+                    boolean hay7diasDeRegistros = (zoo.getFechaDeinicio().plusWeeks(1)).isBefore(inicioSemanaActual);
 
                     if (!hay7diasDeRegistros){
                         System.out.println("No contamos con los suficientes datos para calcular el animal estrella");
@@ -457,7 +493,7 @@ public class MenuAdministrador {
                 case "4":
                     LocalDate inicioSemanaActualE = zoo.getFechaActual().minusWeeks(1);
 
-                    boolean hay7diasDeRegistrosE = (zoo.getFechaDeinicio().plusWeeks(1)).isAfter(inicioSemanaActualE);
+                    boolean hay7diasDeRegistrosE = (zoo.getFechaDeinicio().plusWeeks(1)).isBefore(inicioSemanaActualE);
 
                     if (!hay7diasDeRegistrosE){
                         System.out.println("No contamos con los suficientes datos para calcular el empleado estrella");

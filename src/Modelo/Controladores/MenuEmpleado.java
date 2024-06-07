@@ -43,10 +43,9 @@ public class MenuEmpleado {
             System.out.println("Bienvenido " + empleado.getNombre() + "!");
             System.out.println("1) Marcar tarea completada");
             System.out.println("2) Curar Animal");
-            System.out.println("3) Ver entradas vendidas");
-            System.out.println("4) Cambiar contraseña");
-            System.out.println("5) Anotar observaciones");
-            System.out.println("6) Salir");
+            System.out.println("3) Cambiar contraseña");
+            System.out.println("4) Anotar observaciones");
+            System.out.println("5) Salir");
 
             eleccion = scanner.nextLine();
 
@@ -88,12 +87,6 @@ public class MenuEmpleado {
                     break;
                 case "3":
                     Utils.limpiarPantalla();
-                    int randomNumber = getRandomNumber();
-                    System.out.println("Las entradas vendidas son : " + randomNumber);
-                    guardarZoo(archivoZoo,zoo);
-                    break;
-                case "4":
-                    Utils.limpiarPantalla();
                     System.out.println("Ingrese la nueva contraseña: ");
                     String contrasenia;
                     contrasenia=scanner.nextLine();
@@ -102,7 +95,7 @@ public class MenuEmpleado {
 
                     guardarZoo(archivoZoo,zoo);
                     break;
-                case "5":
+                case "4":
                     try {
                         mostrarAnimales();
                         System.out.println("Ingrese la especie: ");
@@ -128,7 +121,7 @@ public class MenuEmpleado {
                     }
                     guardarZoo(archivoZoo,zoo);
                     break;
-                case "6":
+                case "5":
                     Utils.limpiarPantalla();
                     quiereSalir = true;
                     break;
@@ -163,7 +156,7 @@ public class MenuEmpleado {
 
     public boolean curarAnimal(String especie){
 
-        boolean verificacion = true;
+        boolean verificacion = false;
 
         ArrayList<Animal> animales = zoo.getColeccionAnimal().listado();
 
@@ -171,13 +164,10 @@ public class MenuEmpleado {
 
             if(animales.get(i).getEspecie().equals(especie)){
 
-                animales.get(i).setEstaEnfermo(true);
+                animales.get(i).setEstaEnfermo(false);
 
                 verificacion=true;
 
-            }else{
-
-                verificacion=false;
             }
         }
         return verificacion;
