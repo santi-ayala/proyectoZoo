@@ -13,8 +13,6 @@ public class Usuario implements Serializable {
     private String contrasenia;
     private TipoUsuario tipo;
 
-    //TODO: debería ser privado! hacerlo rompería las funciones en zoologico
-    //me importa un carajo, hay un getter
     private ArrayList<Tarea> tareas;
 
     //============================
@@ -83,4 +81,14 @@ public class Usuario implements Serializable {
         return 0;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", contrasenia='" + contrasenia + '\'' +
+                ", tipo=" + tipo +
+                ", tareas=" + tareas +
+                '}';
+    }
 }

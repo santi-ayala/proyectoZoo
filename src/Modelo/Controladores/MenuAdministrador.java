@@ -5,10 +5,10 @@ import Modelo.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
-import static Modelo.Utils.contarOcurrencias;
 import static Modelo.Utils.guardarZoo;
 import static Modelo.Utils.scanner;
 
@@ -351,7 +351,7 @@ public class MenuAdministrador {
             System.out.println("1) Buscar reporte por fecha");
             System.out.println("2) Ver listado de reportes");
             System.out.println("3) Animal Estrella de la semana");
-            System.out.println("4) Empleado Estrella del semana");
+            System.out.println("4) Empleado Estrella de la semana");
             System.out.println("5) Salir");
             eleccion = scanner.nextLine();
 
@@ -375,7 +375,7 @@ public class MenuAdministrador {
                         boolean rangoSuperior = (fecha.isBefore(zoo.getFechaActual()) || fecha.isEqual(zoo.getFechaActual()));
 
                         // si nuestra fecha ingresada se encuentra dentro de nuestro hashmap
-                        if (rangoSuperior && rangoInferior){
+                        if (rangoSuperior && rangoInferior) {
                             Reporte reporteBuscado = zoo.getHistorial().get(fecha);
 
                             //TODO: hacer un tostring fachero
@@ -395,17 +395,17 @@ public class MenuAdministrador {
                     int i = 0;
                     boolean deseaSeguirViendo = true;
 
-                    for (Map.Entry<LocalDate, Reporte> elemento : zoo.getHistorial().entrySet()){
+                    for (Map.Entry<LocalDate, Reporte> elemento : zoo.getHistorial().entrySet()) {
                         Reporte r = elemento.getValue();
 
-                        if(i!=0 && i%10 == 0){ // cada 10 reportes
+                        if (i != 0 && i % 10 == 0) { // cada 10 reportes
                             System.out.println("Desea seguir viendo reportes?");
 
                             boolean inputInvalido = true;
 
                             do {
                                 String input = scanner.nextLine();
-                                switch (input){
+                                switch (input) {
                                     case "s":
                                         inputInvalido = false;
                                         break;
@@ -434,7 +434,7 @@ public class MenuAdministrador {
 
                     boolean hay7diasDeRegistros = (zoo.getFechaDeinicio().plusWeeks(1)).isBefore(inicioSemanaActual);
 
-                    if (!hay7diasDeRegistros){
+                    if (!hay7diasDeRegistros) {
                         System.out.println("No contamos con los suficientes datos para calcular el animal estrella");
 
                     } else {
@@ -449,42 +449,39 @@ public class MenuAdministrador {
                         //luego determinamos el indice del mayor de ese arreglo, y determinamos a ese animal
                         //el ganador
 
-                        //espero que no me dejen escribir codigo nunca más
+                        //espero que no me dejen escribir código nunca más
 
                         ArrayList<Animal> animalesUnicos = new ArrayList<Animal>();
                         ArrayList<Animal> animalesReportes = new ArrayList<Animal>();
 
-                        for (int j = 0; j<7; j++){
+                        for (int j = 0; j < 7; j++) {
                             Reporte r = zoo.getHistorial().get(inicioSemanaActual);
-                            boolean repetido = false;
-
-                            for (Animal a : animalesUnicos){
-                                if (a.equals(r.getAnimalEstrella()))
-                                    repetido = true;
-                            }
-
-                            if (!repetido){
-                                animalesUnicos.add(r.getAnimalEstrella());
-                            }
-
                             animalesReportes.add(r.getAnimalEstrella());
                             inicioSemanaActual = inicioSemanaActual.plusDays(1);
                         }
 
-                        //iteramos a través de los animales unicos, buscando respuestas
-                        ArrayList<Integer> ocurrencias = new ArrayList<Integer>();
-
-                        for (Animal a: animalesUnicos){
-                            ocurrencias.add(contarOcurrencias(a, animalesReportes));
+                        //determinamos elementos no duplicados del array
+                        for (Animal a : animalesReportes){
+                            if (a != null && !animalesUnicos.contains(a)){
+                                animalesUnicos.add(a);
+                            }
                         }
 
-                        int n = Collections.max(ocurrencias);
-                        int indice = ocurrencias.indexOf(n);
+                        //contamos mediante un arreglo paralelo las ocurrencias de cada animal
+                        ArrayList<Integer> ocurrencias = new ArrayList<Integer>();
+                        for (Animal a : animalesUnicos){
+                            ocurrencias.add(Collections.frequency(animalesReportes, a));
+                        }
 
                         //el sufrimiento terminó
+                        int numeroMaximo = Collections.max(ocurrencias);
+                        int indice = ocurrencias.indexOf(numeroMaximo);
+
                         Animal animalEstrella = animalesUnicos.get(indice);
 
-                        System.out.println("El animal estrella de la semana es \n" + animalEstrella);
+                        System.out.println("El animal estrella de la semana es \n" + animalEstrella.getEspecie());
+                        System.out.println("Edad: " + animalEstrella.getEdad());
+                        System.out.println("Observaciones: " + animalEstrella.getObservaciones());
                     }
                     System.out.println("Presione una tecla para continuar");
                     scanner.nextLine();
@@ -495,48 +492,53 @@ public class MenuAdministrador {
 
                     boolean hay7diasDeRegistrosE = (zoo.getFechaDeinicio().plusWeeks(1)).isBefore(inicioSemanaActualE);
 
-                    if (!hay7diasDeRegistrosE){
+                    if (!hay7diasDeRegistrosE) {
                         System.out.println("No contamos con los suficientes datos para calcular el empleado estrella");
 
                     } else {
-                        ArrayList<Usuario> empleadosUnicos = new ArrayList<Usuario>();
                         ArrayList<Usuario> empleadosReportes = new ArrayList<Usuario>();
 
-                        for (int j = 0; j<7; j++){
+                        //Ponemos todos los reportes de la ultima semana en un array
+                        for (int j = 0; j < 7; j++) {
                             Reporte r = zoo.getHistorial().get(inicioSemanaActualE);
-                            boolean repetido = false;
-
-                            for (Usuario a : empleadosUnicos){
-                                if (a.equals(r.getEmpleadoEstrella()))
-                                    repetido = true;
-                            }
-
-                            if (!repetido){
-                                empleadosUnicos.add(r.getEmpleadoEstrella());
-                            }
-
                             empleadosReportes.add(r.getEmpleadoEstrella());
                             inicioSemanaActualE = inicioSemanaActualE.plusDays(1);
                         }
 
-                        ArrayList<Integer> ocurrencias = new ArrayList<Integer>();
-
-                        for (Usuario a: empleadosUnicos){
-                            ocurrencias.add(contarOcurrencias(a, empleadosReportes));
+                        //Determinamos cuales son los elementos no duplicados del array
+                        ArrayList<Usuario> empleadosUnicos = new ArrayList<Usuario>();
+                        for (Usuario u : empleadosReportes) {
+                            if (u != null && !empleadosUnicos.contains(u)) {
+                                empleadosUnicos.add(u);
+                            }
                         }
 
-                        int n = Collections.max(ocurrencias);
-                        int indice = ocurrencias.indexOf(n);
+                        //Contamos mediante un arreglo paralelo las ocurrencias de cada empleado
+                        ArrayList<Integer> ocurrencias = new ArrayList<Integer>();
+                        for (Usuario a : empleadosUnicos) {
+                            ocurrencias.add(Collections.frequency(empleadosReportes, a));
+                        }
+
+                        //Determinamos el empleado con más ocurrencias mediante el arreglo paralelo
+                        //y accedemos a él mediante el indice
+                        int numeroMaximo = Collections.max(ocurrencias);
+                        int indice = ocurrencias.indexOf(numeroMaximo);
 
                         Usuario empleadoEstrella = empleadosUnicos.get(indice);
 
-                        System.out.println("El empleado estrella de la semana es \n" + empleadoEstrella);
+                        System.out.println("El empleado estrella de la semana es " + empleadoEstrella.getNombre());
+                        int cantidadTareasCompletadas = 0;
+                        for (Tarea t : empleadoEstrella.getTareas()) {
+                            if (t.isCompletado()) {
+                                cantidadTareasCompletadas++;
+                            }
+                            System.out.println("Cantidad de tareas completadas: " + cantidadTareasCompletadas);
+                        }
+                        System.out.println("Presione una tecla para continuar");
+                        scanner.nextLine();
+                        Utils.limpiarPantalla();
+                        break;
                     }
-                    System.out.println("Presione una tecla para continuar");
-                    scanner.nextLine();
-                    Utils.limpiarPantalla();
-
-                    break;
                 case "5":
                     quiereSalir = true;
                     break;
@@ -545,7 +547,6 @@ public class MenuAdministrador {
                     scanner.nextLine();
             }
         }
-
     }
 }
 

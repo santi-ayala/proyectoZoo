@@ -107,6 +107,8 @@ public class Utils {
         return localDateReporteHashMap;
     }
 
+    //era una funcion hermosa, pero existe Collections.frequency
+    /*
     public static <E> int contarOcurrencias(E e, ArrayList<E> array){
         int i = 0;
         for (E elemento : array){
@@ -115,6 +117,6 @@ public class Utils {
         }
         return i;
     }
-
+    */
 
 }

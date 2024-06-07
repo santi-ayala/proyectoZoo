@@ -45,28 +45,34 @@ public class MenuEmpleado {
             System.out.println("2) Curar Animal");
             System.out.println("3) Cambiar contraseña");
             System.out.println("4) Anotar observaciones");
-            System.out.println("5) Salir");
+
+            System.out.println("6) Salir");
 
             eleccion = scanner.nextLine();
 
             switch (eleccion) {
                 case "1":
                     Utils.limpiarPantalla();
-                    mostrarTareas();
-                    System.out.println("Que tarea fue completada?");
-                    String tarea;
-                    tarea= scanner.nextLine();
+
                     boolean verificacion;
-                   verificacion = marcarTareaCompletada(tarea, empleado);
+                    if (mostrarTareas() != 0) {
+                        System.out.println("Que tarea fue completada?");
+                        String tarea;
+                        tarea= scanner.nextLine();
+                        verificacion = marcarTareaCompletada(tarea, empleado);
 
-                   if(verificacion){
-                       System.out.println("Tarea completada!");
-                   }else{
+                        if(verificacion){
+                            System.out.println("Tarea completada!");
+                        }else{
 
-                       System.out.println("No se encontro la tarea");
-                   }
+                            System.out.println("No se encontro la tarea");
+                        }
 
-                    guardarZoo(archivoZoo,zoo);
+                        guardarZoo(archivoZoo,zoo);
+                    } else {
+                        System.out.println("Usted no tiene tareas asignadas");
+                        scanner.nextLine();
+                    }
                     break;
                 case "2":
                     Utils.limpiarPantalla();
@@ -122,6 +128,15 @@ public class MenuEmpleado {
                     guardarZoo(archivoZoo,zoo);
                     break;
                 case "5":
+                    for (Animal a : zoo.getColeccionAnimal().listado()){
+                        System.out.println(a);
+                        System.out.println();
+                    }
+
+                    System.out.println("Pulse una tecla para continuar");
+                    scanner.nextLine();
+                    break;
+                case "6":
                     Utils.limpiarPantalla();
                     quiereSalir = true;
                     break;
@@ -207,9 +222,12 @@ public class MenuEmpleado {
 
     }
 
-    public void mostrarTareas(){
+    public int mostrarTareas(){
 
         ArrayList<Tarea> tareas= empleado.getTareas();
+
+        int numeroDeTareas = tareas.size();
+
 
         for(int i=0; i<tareas.size();i++){
 
@@ -220,6 +238,7 @@ public class MenuEmpleado {
             }
         }
 
+        return numeroDeTareas;
     }
 
 
