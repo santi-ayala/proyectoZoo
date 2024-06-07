@@ -54,7 +54,7 @@ public class Utils {
                 }
             }
         }
-    }
+    }//Guarda un zoo en el archivo
     public static Zoologico leerZoo(String archivo) throws IOException {
         ObjectInputStream inputStream = null;
         Zoologico zoologico = null;
@@ -80,7 +80,7 @@ public class Utils {
             }
         }
         return zoologico;
-    }
+    }//Lee el archivo y retorna el zoologico cargado
 
     public static HashMap<LocalDate,Reporte> leerReporte(String archivo){
         ObjectInputStream objectInputStream = null;

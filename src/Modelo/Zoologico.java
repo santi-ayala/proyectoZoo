@@ -72,16 +72,8 @@ public class Zoologico implements Serializable {
         return admin;
     }
 
-    public void setColeccionUsuario(ColeccionArray<Usuario> coleccionUsuario) {
-        this.coleccionUsuario = coleccionUsuario;
-    }
-
     public ColeccionArray<Animal> getColeccionAnimal() {
         return coleccionAnimal;
-    }
-
-    public void setColeccionAnimal(ColeccionArray<Animal> coleccionAnimal) {
-        this.coleccionAnimal = coleccionAnimal;
     }
 
     public LocalDate getFechaDeinicio() {
@@ -96,9 +88,6 @@ public class Zoologico implements Serializable {
         return historial;
     }
 
-    public void setHistorial(HashMap<LocalDate, Reporte> historial) {
-        this.historial = historial;
-    }
     //============================
     //MÉTODOS
     //============================
@@ -113,7 +102,7 @@ public class Zoologico implements Serializable {
             posicion++;
         }
         return posicionReal;
-    }
+    }//Busca un usuario en el array usuario y retorna la posicion
 
     @Override
     public String toString() {
@@ -138,7 +127,7 @@ public class Zoologico implements Serializable {
             posicion++;
         }
         return posicionReal;
-    }
+    }//Busca un animal en el array animal y retorna la posicion
 
     public void avanzarSimulacion() {
         //suponemos q vendemos x cantidad de entradas
@@ -209,29 +198,5 @@ public class Zoologico implements Serializable {
         historial.put(fechaActual, reporte);
         
         fechaActual = fechaActual.plusDays(1);
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    //TODO: mover todo esto a usuarios
-    //Mostrar animales
-    public void mostrarAnimales(){
-     ArrayList<Animal> animales = coleccionAnimal.listado();
-     for(int i=0; i<animales.size();i++){
-         System.out.println(animales.get(i));
-     }
-    }
-    
-
-
-
-
-
-
-
+    }//Avanza un dia
 }

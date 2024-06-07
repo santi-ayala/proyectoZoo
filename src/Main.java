@@ -18,8 +18,6 @@ public class Main {
             System.out.println("1) Iniciar Sesión");
             System.out.println("2) Crear nuevo Zoologico");
 
-
-
             eleccion = scanner.nextLine();
             switch (eleccion) {
                 case "1":

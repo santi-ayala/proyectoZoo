@@ -32,17 +32,17 @@ public class ColeccionArray<T> implements ICRUDE<T>, Serializable {
 
         //semanticamente raro, devuelve false negado en caso de exito
         return !duplicado;
-    }
+    }//Agrega a la arraylist
 
     @Override
     public boolean darDeBaja(T t) {
         return tArrayList.remove(t);
-    }
+    }//Elimina a la arraylist
 
     @Override
     public ArrayList<T> listado() {
         return tArrayList;
-    }
+    }//retorna un arraylist
 
     public boolean modificar(T objetoOriginal, T objetoModificado){
         boolean retorno = false;
@@ -55,5 +55,5 @@ public class ColeccionArray<T> implements ICRUDE<T>, Serializable {
             }
         }
         return retorno;
-    }
+    }//Modifica el arraylist
 }

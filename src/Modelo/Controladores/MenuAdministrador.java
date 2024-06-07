@@ -138,6 +138,7 @@ public class MenuAdministrador {
                     }
 
                     break;
+
                 case "3":
                     System.out.println("Nombre de usuario original: ");
                     nombreUsuario = scanner.nextLine();
@@ -162,7 +163,6 @@ public class MenuAdministrador {
                         System.out.println("No se encontro el usuario");
                     }
                     break;
-
                 case "4":
                     System.out.println("Nombre de usuario: ");
                     nombreUsuario = scanner.nextLine();
