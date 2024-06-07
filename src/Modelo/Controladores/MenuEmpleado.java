@@ -45,7 +45,7 @@ public class MenuEmpleado {
             System.out.println("2) Curar Animal");
             System.out.println("3) Cambiar contraseña");
             System.out.println("4) Anotar observaciones");
-
+            System.out.println("5) Mostrar los animales");
             System.out.println("6) Salir");
 
             eleccion = scanner.nextLine();
