@@ -62,6 +62,8 @@ public class Utils {
             FileInputStream fileInputStream = new FileInputStream(archivo);
             inputStream = new ObjectInputStream(fileInputStream);
             zoologico = (Zoologico) inputStream.readObject();
+        } catch (InvalidClassException e) {
+            //no hacer nada, pasa cuando el programa sale sucio
         } catch (IOException e) {
             System.err.println("Error al leer el zoológico: " + e.getMessage());
             System.err.println("(Chequee si existe un zoológico guardado!)");
