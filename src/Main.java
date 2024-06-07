@@ -95,6 +95,7 @@ public class Main {
             System.out.println("Ingrese su contraseña");
             String contrasenia = scanner.nextLine();
 
+
             int pos = zoo.buscarXusuarioYcontra(usuario,contrasenia);
 
             if(zoo.getAdmin().getUsuario().equals(usuario) && zoo.getAdmin().getContrasenia().equals(contrasenia)){

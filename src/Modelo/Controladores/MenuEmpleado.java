@@ -6,6 +6,7 @@ import Modelo.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static Modelo.Utils.guardarZoo;
 import static Modelo.Utils.scanner;
 
 public class MenuEmpleado {
@@ -35,7 +36,8 @@ public class MenuEmpleado {
 
     public void mainLoop() {
         boolean quiereSalir = false;
-        String eleccion;
+        String eleccion, especie = null, habitat = null;
+        int edad = 0;
 
         while (!quiereSalir) {
             System.out.println("Bienvenido " + empleado.getNombre() + "!");
@@ -43,7 +45,8 @@ public class MenuEmpleado {
             System.out.println("2) Curar Animal");
             System.out.println("3) Ver entradas vendidas");
             System.out.println("4) Cambiar contraseña");
-            System.out.println("5) Salir");
+            System.out.println("5) Anotar observaciones");
+            System.out.println("6) Salir");
 
             eleccion = scanner.nextLine();
 
@@ -64,13 +67,12 @@ public class MenuEmpleado {
                        System.out.println("No se encontro la tarea");
                    }
 
-
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "2":
                     Utils.limpiarPantalla();
                     mostrarAnimalesEnfermos();
                     System.out.println("Ingrese el animal?");
-                    String especie;
                     especie = scanner.nextLine();
                    // boolean verificacion;
                     verificacion = curarAnimal(especie);
@@ -82,13 +84,13 @@ public class MenuEmpleado {
                         System.out.println("No se encontro la especie");
                     }
 
-
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "3":
                     Utils.limpiarPantalla();
                     int randomNumber = getRandomNumber();
                     System.out.println("Las entradas vendidas son : " + randomNumber);
-
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "4":
                     Utils.limpiarPantalla();
@@ -98,9 +100,35 @@ public class MenuEmpleado {
                     cambiarContraseniaEmpleado(contrasenia);
                     System.out.println("Contraseña cambiada con exito!");
 
-
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "5":
+                    try {
+                        mostrarAnimales();
+                        System.out.println("Ingrese la especie: ");
+                        especie = scanner.nextLine();
+
+                        System.out.println("Ingrese el habitat: ");
+                        habitat = scanner.nextLine();
+
+                        System.out.println("Ingrese la edad: ");
+                        edad = scanner.nextInt();
+                    }catch (Exception e){
+                        System.out.println("Error en el ingreso de datos");;
+                    }
+
+                    int pos = zoo.buscarXespecieYhabitatYedad(especie,habitat,edad);
+                    if(pos != -1){
+                        scanner.nextLine();
+                        System.out.println("Asigna las observaciones: \n");
+                        String observaciones = scanner.nextLine();
+                        zoo.getColeccionAnimal().listado().get(pos).setObservaciones(observaciones);
+                    }else{
+                        System.out.println("Animal inexistente");
+                    }
+                    guardarZoo(archivoZoo,zoo);
+                    break;
+                case "6":
                     Utils.limpiarPantalla();
                     quiereSalir = true;
                     break;
@@ -172,6 +200,18 @@ public class MenuEmpleado {
                 System.out.println(animales.get(i).toString());
                 System.out.println("\n");
             }
+        }
+
+
+    }
+    public void mostrarAnimales() {
+
+        ArrayList<Animal> animales = zoo.getColeccionAnimal().listado();
+
+        System.out.println("-------------ANIMALES-------------");
+        for(int i=0; i<animales.size();i++){
+                System.out.println(animales.get(i).toString());
+                System.out.println("\n");
         }
 
 
