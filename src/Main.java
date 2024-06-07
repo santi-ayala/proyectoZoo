@@ -76,36 +76,59 @@ public class Main {
                 } while (inputInvalido);
             }
 
+
             if (quiereSobreescribir) {
-                System.out.println("Ingrese el usuario de su nuevo administrador");
-                String usuario = scanner.nextLine();
+                try{
+                    System.out.println("Ingrese el usuario de su nuevo administrador");
+                    String usuario = scanner.nextLine();
+                    if (usuario.isEmpty()) {
+                        throw new LoginException("El campo de usuario no puede estar vacío");
+                    }
 
-                System.out.println("Ingrese su contraseña");
-                String contrasenia = scanner.nextLine();
+                    System.out.println("Ingrese su contrasenia");
+                    String contrasenia = scanner.nextLine();
+                    if (contrasenia.isEmpty()) {
+                        throw new LoginException("El campo de contraseña no puede estar vacío");
+                    }
 
-                System.out.println("Ingrese Nombre y Apellido");
-                String nombreApellido = scanner.nextLine();
+                    System.out.println("Ingrese Nombre y Apellido");
+                    String nombreApellido = scanner.nextLine();
+                    if (nombreApellido.isEmpty()) {
+                        throw new LoginException("El campo de nombre y apellido no puede estar vacío");
+                    }
 
-                System.out.println("Ingrese un nombre para su zoologico!");
-                String nombreZoo = scanner.nextLine();
+                    System.out.println("Ingrese un nombre para su zoologico!");
+                    String nombreZoo = scanner.nextLine();
+                    if (nombreZoo.isEmpty()) {
+                        throw new LoginException("El campo de nombre del zoológico no puede estar vacío");
+                    }
 
 
-                Usuario admin = new Usuario(usuario, contrasenia, TipoUsuario.ADMINISTRADOR, nombreApellido);
-                Zoologico zoo = new Zoologico(nombreZoo, admin);
+                    Usuario admin = new Usuario(usuario, contrasenia, TipoUsuario.ADMINISTRADOR, nombreApellido);
+                    Zoologico zoo = new Zoologico(nombreZoo, admin);
 
-                for(int i = 0 ; i <15 ; i++){
-                    Animal animal = new Animal("");
-                    zoo.getColeccionAnimal().darDeAlta(animal);
+                    for(int i = 0 ; i <15 ; i++){
+                        Animal animal = new Animal("");
+                        zoo.getColeccionAnimal().darDeAlta(animal);
+                    }
+                    guardarZoo(archivoZoo,zoo);
+
+
+                    System.out.println("Su zoológico ha sido creado con exito!\nPulse cualquier tecla para continuar");
+                    scanner.nextLine();
+
+                    MenuAdministrador menuAdmin = new MenuAdministrador(zoo, admin);
+
+                    menuAdmin.mainLoop();
+
+
+                }catch (LoginException e){
+                    System.out.println("Error: " + e.getMessage());
+
+
+
                 }
-                guardarZoo(archivoZoo,zoo);
 
-
-                System.out.println("Su zoológico ha sido creado con exito!\nPulse cualquier tecla para continuar");
-                scanner.nextLine();
-
-                MenuAdministrador menuAdmin = new MenuAdministrador(zoo, admin);
-
-                menuAdmin.mainLoop();
             } else {
                 System.out.println("Abortando...");
             }
