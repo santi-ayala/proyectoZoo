@@ -145,11 +145,10 @@ public class Main {
         try{
             zoo = leerZoo(archivoZoo);
         } catch (Exception e){
-            System.out.println("Ocurrió un error!");
             err = true;
         }
 
-        if (!err) {
+        if (!err && zoo != null) {
             System.out.println("LOGIN");
             System.out.println("Ingrese el nombre de usuario ");
             String usuario = scanner.nextLine();
@@ -175,6 +174,8 @@ public class Main {
                 }
     
             }
+        } else {
+            System.out.println("Ocurrio un error! (cerro mal el programa?)");
         }
 
 
