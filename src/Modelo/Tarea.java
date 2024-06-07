@@ -1,6 +1,8 @@
 package Modelo;
 
-public class Tarea {
+import java.io.Serializable;
+
+public class Tarea implements Serializable {
 
     private String accion;
 
@@ -15,8 +17,19 @@ public class Tarea {
         return accion;
     }
 
+    public boolean isCompletado() {
+        return completado;
+    }
+
     public void setCompletado(boolean completado) {
         this.completado = completado;
     }
 
+    @Override
+    public String toString() {
+        return "Tarea{" +
+                "accion='" + accion + '\'' +
+                ", completado=" + completado +
+                '}';
+    }
 }

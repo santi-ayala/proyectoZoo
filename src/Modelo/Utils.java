@@ -37,14 +37,47 @@ public class Utils {
             e.getMessage();
         }
     }
-    public static void guardarUsuarios(String archivo, Usuario usuario){
+    public static void guardarZoo(String archivo, Zoologico zoologico) {
         ObjectOutputStream outputStream = null;
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(archivo);
-        }catch (IOException e){
-            e.getMessage();
+            outputStream = new ObjectOutputStream(fileOutputStream);
+            outputStream.writeObject(zoologico);
+        } catch (IOException e) {
+            System.err.println("Error al guardar el zoológico: " + e.getMessage());
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el stream: " + e.getMessage());
+                }
+            }
         }
-
+    }
+    public static Zoologico leerZoo(String archivo) throws IOException {
+        ObjectInputStream inputStream = null;
+        Zoologico zoologico = null;
+        try {
+            FileInputStream fileInputStream = new FileInputStream(archivo);
+            inputStream = new ObjectInputStream(fileInputStream);
+            zoologico = (Zoologico) inputStream.readObject();
+        } catch (IOException e) {
+            System.err.println("Error al leer el zoológico: " + e.getMessage());
+            System.err.println("(Chequee si existe un zoológico guardado!)");
+            throw new IOException();
+        } catch (ClassNotFoundException e) {
+            System.err.println("Clase no encontrada: " + e.getMessage());
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    System.err.println("Error al cerrar el stream: " + e.getMessage());
+                }
+            }
+        }
+        return zoologico;
     }
 
     public static HashMap<LocalDate,Reporte> leerReporte(String archivo){
@@ -53,16 +86,15 @@ public class Utils {
         try{
             FileInputStream fileInputStream = new FileInputStream(archivo);
             objectInputStream = new ObjectInputStream(fileInputStream);
+
             Iterator<Map.Entry<LocalDate,Reporte>> entryIterator = localDateReporteHashMap.entrySet().iterator();
             while(true){
                 Reporte reporte = (Reporte) objectInputStream.readObject();
                 localDateReporteHashMap.put(reporte.getFecha(),reporte);
             }
-        }catch (IOException e){
+        }catch (IOException | ClassNotFoundException e){
             e.getMessage();
 
-        } catch (ClassNotFoundException e) {
-            e.getMessage();;
         }
         try {
             objectInputStream.close();
@@ -71,6 +103,16 @@ public class Utils {
         }
 
         return localDateReporteHashMap;
-
     }
+
+    public static <E> int contarOcurrencias(E e, ArrayList<E> array){
+        int i = 0;
+        for (E elemento : array){
+            if (elemento.equals(e))
+                i++;
+        }
+        return i;
+    }
+
+
 }

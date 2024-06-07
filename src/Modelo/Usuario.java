@@ -1,8 +1,9 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
     //============================
     //ATRIBUTOS
@@ -11,7 +12,10 @@ public class Usuario {
     private String usuario;
     private String contrasenia;
     private TipoUsuario tipo;
-    protected ArrayList<Tarea> tareas;
+
+    //TODO: debería ser privado! hacerlo rompería las funciones en zoologico
+    //me importa un carajo, hay un getter
+    private ArrayList<Tarea> tareas;
 
     //============================
     //CONSTRUCTORES
@@ -21,6 +25,8 @@ public class Usuario {
         this.contrasenia = contrasenia;
         this.tipo = tipo;
         this.nombre = nombre;
+
+        tareas = new ArrayList<Tarea>();
     }
 
     //============================
@@ -60,15 +66,16 @@ public class Usuario {
     }
 
     @Override
+    //Nuestro equals compara unicamente nombres de usuario sin diferenciar letras mayusculas
     public boolean equals(Object o) {
-        boolean esFalso = false;
+        boolean sonIguales = false;
         if(o != null && o instanceof Usuario){
             Usuario usuario1 = (Usuario) o;
-            if(usuario1.getUsuario().equalsIgnoreCase(usuario) && usuario1.getContrasenia() == contrasenia ){
-                esFalso = true;
+            if(usuario1.getUsuario().equalsIgnoreCase(usuario)){
+                sonIguales = true;
             }
         }
-        return esFalso;
+        return sonIguales;
     }
 
     @Override

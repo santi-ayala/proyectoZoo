@@ -1,16 +1,16 @@
 package Modelo.Controladores;
 
-import Modelo.ColeccionArray;
-import Modelo.Usuario;
-import Modelo.Utils;
-import Modelo.Zoologico;
+import Modelo.*;
 
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import static Modelo.Utils.guardarZoo;
 import static Modelo.Utils.scanner;
 
 public class MenuEmpleado {
+    public static String archivoZoo = "ArchivoZoo.dat";
     Zoologico zoo;
 
     Usuario empleado;
@@ -36,7 +36,8 @@ public class MenuEmpleado {
 
     public void mainLoop() {
         boolean quiereSalir = false;
-        String eleccion;
+        String eleccion, especie = null, habitat = null;
+        int edad = 0;
 
         while (!quiereSalir) {
             System.out.println("Bienvenido " + empleado.getNombre() + "!");
@@ -44,18 +45,20 @@ public class MenuEmpleado {
             System.out.println("2) Curar Animal");
             System.out.println("3) Ver entradas vendidas");
             System.out.println("4) Cambiar contraseña");
-            System.out.println("5) Salir");
+            System.out.println("5) Anotar observaciones");
+            System.out.println("6) Salir");
 
             eleccion = scanner.nextLine();
 
             switch (eleccion) {
                 case "1":
                     Utils.limpiarPantalla();
+                    mostrarTareas();
                     System.out.println("Que tarea fue completada?");
                     String tarea;
-                    tarea = scanner.nextLine();
+                    tarea= scanner.nextLine();
                     boolean verificacion;
-                   verificacion = zoo.marcarTareaCompletada(tarea, empleado);
+                   verificacion = marcarTareaCompletada(tarea, empleado);
 
                    if(verificacion){
                        System.out.println("Tarea completada!");
@@ -64,15 +67,15 @@ public class MenuEmpleado {
                        System.out.println("No se encontro la tarea");
                    }
 
-
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "2":
                     Utils.limpiarPantalla();
-                    System.out.println("Que animal fue curado?");
-                    String especie;
+                    mostrarAnimalesEnfermos();
+                    System.out.println("Ingrese el animal?");
                     especie = scanner.nextLine();
                    // boolean verificacion;
-                    verificacion = zoo.curarAnimal(especie);
+                    verificacion = curarAnimal(especie);
 
                     if(verificacion){
                         System.out.println("Felcitaciones, buen trabajo!");
@@ -80,18 +83,52 @@ public class MenuEmpleado {
 
                         System.out.println("No se encontro la especie");
                     }
+
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "3":
                     Utils.limpiarPantalla();
                     int randomNumber = getRandomNumber();
                     System.out.println("Las entradas vendidas son : " + randomNumber);
-
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "4":
                     Utils.limpiarPantalla();
+                    System.out.println("Ingrese la nueva contraseña: ");
+                    String contrasenia;
+                    contrasenia=scanner.nextLine();
+                    cambiarContraseniaEmpleado(contrasenia);
+                    System.out.println("Contraseña cambiada con exito!");
 
+                    guardarZoo(archivoZoo,zoo);
                     break;
                 case "5":
+                    try {
+                        mostrarAnimales();
+                        System.out.println("Ingrese la especie: ");
+                        especie = scanner.nextLine();
+
+                        System.out.println("Ingrese el habitat: ");
+                        habitat = scanner.nextLine();
+
+                        System.out.println("Ingrese la edad: ");
+                        edad = scanner.nextInt();
+                    }catch (Exception e){
+                        System.out.println("Error en el ingreso de datos");;
+                    }
+
+                    int pos = zoo.buscarXespecieYhabitatYedad(especie,habitat,edad);
+                    if(pos != -1){
+                        scanner.nextLine();
+                        System.out.println("Asigna las observaciones: \n");
+                        String observaciones = scanner.nextLine();
+                        zoo.getColeccionAnimal().listado().get(pos).setObservaciones(observaciones);
+                    }else{
+                        System.out.println("Animal inexistente");
+                    }
+                    guardarZoo(archivoZoo,zoo);
+                    break;
+                case "6":
                     Utils.limpiarPantalla();
                     quiereSalir = true;
                     break;
@@ -102,5 +139,100 @@ public class MenuEmpleado {
             }
         }
     }
+
+    //FUNCIONES EMPLEADO////////////////////////////////////
+    public boolean marcarTareaCompletada(String tarea, Usuario empleado){
+
+        boolean verificacion = false;
+
+        ArrayList<Tarea> tareas = empleado.getTareas();
+
+        for(int i=0; i<tareas.size(); i++){
+
+            if(tareas.get(i).getAccion().equals(tarea)){
+
+                tareas.get(i).setCompletado(true);
+
+                verificacion=true;
+
+            }
+        }
+        return verificacion;
+
+    }
+
+    public boolean curarAnimal(String especie){
+
+        boolean verificacion = true;
+
+        ArrayList<Animal> animales = zoo.getColeccionAnimal().listado();
+
+        for(int i=0; i<animales.size(); i++){
+
+            if(animales.get(i).getEspecie().equals(especie)){
+
+                animales.get(i).setEstaEnfermo(true);
+
+                verificacion=true;
+
+            }else{
+
+                verificacion=false;
+            }
+        }
+        return verificacion;
+
+    }
+
+    public void cambiarContraseniaEmpleado(String contrasenia){
+        empleado.setContrasenia(contrasenia);
+    }
+
+    public void mostrarAnimalesEnfermos() {
+
+        ArrayList<Animal> animales = zoo.getColeccionAnimal().listado();
+
+        System.out.println("Animales enfermos: \n");
+        for(int i=0; i<animales.size();i++){
+
+            if(animales.get(i).getEstaEnfermo()){
+
+                System.out.println(animales.get(i).toString());
+                System.out.println("\n");
+            }
+        }
+
+
+    }
+    public void mostrarAnimales() {
+
+        ArrayList<Animal> animales = zoo.getColeccionAnimal().listado();
+
+        System.out.println("-------------ANIMALES-------------");
+        for(int i=0; i<animales.size();i++){
+                System.out.println(animales.get(i).toString());
+                System.out.println("\n");
+        }
+
+
+    }
+
+    public void mostrarTareas(){
+
+        ArrayList<Tarea> tareas= empleado.getTareas();
+
+        for(int i=0; i<tareas.size();i++){
+
+            if(!tareas.get(i).isCompletado()){
+
+                System.out.println(tareas.get(i).toString());
+                System.out.println("\n");
+            }
+        }
+
+    }
+
+
+
 
 }

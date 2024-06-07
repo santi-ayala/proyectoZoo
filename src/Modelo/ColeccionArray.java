@@ -1,9 +1,9 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 
-public class ColeccionArray<T> implements ICRUDE<T> {
+public class ColeccionArray<T> implements ICRUDE<T>, Serializable {
     //Atributos
     private ArrayList<T> tArrayList;
 
@@ -13,16 +13,25 @@ public class ColeccionArray<T> implements ICRUDE<T> {
         tArrayList = new ArrayList<T>();
     }
 
-    //Getter
 
-    public ArrayList<T> gettArrayList() {
-        return tArrayList;
-    }
 
     ///Metodos
     @Override
     public boolean darDeAlta(T t) {
-        return tArrayList.add(t);
+        boolean duplicado = false;
+
+        for (T elemento: tArrayList){
+            if (t.equals(elemento)){
+                duplicado = true;
+            }
+        }
+
+        if (!duplicado){
+            tArrayList.add(t);
+        }
+
+        //semanticamente raro, devuelve false negado en caso de exito
+        return !duplicado;
     }
 
     @Override
