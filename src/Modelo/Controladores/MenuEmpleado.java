@@ -45,7 +45,7 @@ public class MenuEmpleado {
             System.out.println("2) Curar Animal");
             System.out.println("3) Cambiar contraseña");
             System.out.println("4) Anotar observaciones");
-            System.out.println("5) Mostrar los animales");
+            System.out.println("5) Mostrar Animales");
             System.out.println("6) Salir");
 
             eleccion = scanner.nextLine();
@@ -221,14 +221,22 @@ public class MenuEmpleado {
 
 
     }
-
+    //FIXME: el numero de retorno debería ser un reflejo filedigno de la cantidad de tareas, pero nuestro único caller
+    //en menú empleado necesita que le pasemos únicamente las tareas que no esten completadas.
     public int mostrarTareas(){
 
         ArrayList<Tarea> tareas= empleado.getTareas();
 
-        int numeroDeTareas = tareas.size();
+        int numeroDeTareas = 0;
+
+        for (Tarea t : tareas){
+            if (!t.isCompletado()){
+                numeroDeTareas++;
+            }
+        }
 
 
+        //raro el uso de tareas.size aca
         for(int i=0; i<tareas.size();i++){
 
             if(!tareas.get(i).isCompletado()){

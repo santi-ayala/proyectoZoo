@@ -399,7 +399,7 @@ public class MenuAdministrador {
                         Reporte r = elemento.getValue();
 
                         if (i != 0 && i % 10 == 0) { // cada 10 reportes
-                            System.out.println("Desea seguir viendo reportes?");
+                            System.out.println("Desea seguir viendo reportes? (s/n)");
 
                             boolean inputInvalido = true;
 
@@ -521,18 +521,24 @@ public class MenuAdministrador {
 
                         //Determinamos el empleado con más ocurrencias mediante el arreglo paralelo
                         //y accedemos a él mediante el indice
-                        int numeroMaximo = Collections.max(ocurrencias);
-                        int indice = ocurrencias.indexOf(numeroMaximo);
 
-                        Usuario empleadoEstrella = empleadosUnicos.get(indice);
+                        if (!ocurrencias.isEmpty()) {
+                            int numeroMaximo = Collections.max(ocurrencias);
+                            int indice = ocurrencias.indexOf(numeroMaximo);
 
-                        System.out.println("El empleado estrella de la semana es " + empleadoEstrella.getNombre());
-                        int cantidadTareasCompletadas = 0;
-                        for (Tarea t : empleadoEstrella.getTareas()) {
-                            if (t.isCompletado()) {
-                                cantidadTareasCompletadas++;
+                            Usuario empleadoEstrella = empleadosUnicos.get(indice);
+
+                            System.out.println("El empleado estrella de la semana es " + empleadoEstrella.getNombre());
+                            int cantidadTareasCompletadas = 0;
+                            for (Tarea t : empleadoEstrella.getTareas()) {
+                                if (t.isCompletado()) {
+                                    cantidadTareasCompletadas++;
+                                }
+                                System.out.println("Cantidad de tareas completadas: " + cantidadTareasCompletadas);
                             }
-                            System.out.println("Cantidad de tareas completadas: " + cantidadTareasCompletadas);
+                        } else {
+                            System.out.println("No hemos podido calcular el empleado estrella de la ultima semana");
+                            System.out.println("Por favor, verifique si existen empleados!");
                         }
                         System.out.println("Presione una tecla para continuar");
                         scanner.nextLine();
