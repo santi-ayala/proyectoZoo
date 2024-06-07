@@ -56,6 +56,10 @@ public class Zoologico implements Serializable {
     //============================
 
 
+    public float getBalance() {
+        return balance;
+    }
+
     public String getNombre() {
         return nombre;
     }
