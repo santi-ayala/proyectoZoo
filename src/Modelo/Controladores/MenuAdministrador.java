@@ -181,6 +181,7 @@ public class MenuAdministrador {
 
             System.out.println("1) Dar de alta");
             System.out.println("2) Eliminar");
+            System.out.println("3) Salir");
             String eleccion = scanner.nextLine();
             String especie, habitat, dieta, observaciones;
             int edad, posicion = 0;
@@ -196,11 +197,11 @@ public class MenuAdministrador {
                     System.out.println("Dieta: ");
                     dieta = scanner.nextLine();
 
-                    System.out.println("Edad: ");
-                    edad = scanner.nextInt();
-
                     System.out.println("Observaciones: ");
                     observaciones = scanner.nextLine();
+
+                    System.out.println("Edad: ");
+                    edad = scanner.nextInt();
 
                     Animal animal = new Animal(especie, habitat, edad, dieta, observaciones);
 
@@ -236,6 +237,8 @@ public class MenuAdministrador {
                         System.out.println("No se encontro el animal");
                     }
                     break;
+                case "3":
+                    break;
                 default:
                     System.out.println("Opción incorrecta");
                     break;
@@ -250,8 +253,8 @@ public class MenuAdministrador {
         String nombreUsuario, contra;
         int pos;
         while (!quiereSalir) {
-
             System.out.println("1) Asignar una tarea");
+            System.out.println("2) Salir");
 
             String eleccion = scanner.nextLine();
             switch (eleccion) {
@@ -264,16 +267,15 @@ public class MenuAdministrador {
 
                     pos = zoo.buscarXusuarioYcontra(nombreUsuario, contra);
                     if (pos != -1) {
-                        Usuario usuario = zoo.getColeccionUsuario().gettArrayList().get(pos);
-
                         System.out.println("Tarea a asignar: ");
-
                         Tarea tarea = new Tarea(scanner.nextLine());
-                        usuario.getTareas().add(tarea);
-                        usuario.setTareas(usuario.getTareas());
+                        zoo.getColeccionUsuario().gettArrayList().get(pos).getTareas().add(tarea);
+
                     } else {
                         System.out.println("Error: Datos invalidos");
                     }
+                    break;
+                case "2":
                     break;
                 default:
                     System.out.println("Opción incorrecta");

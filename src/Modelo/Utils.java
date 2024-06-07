@@ -37,6 +37,15 @@ public class Utils {
             e.getMessage();
         }
     }
+    public static void guardarUsuarios(String archivo, Usuario usuario){
+        ObjectOutputStream outputStream = null;
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(archivo);
+        }catch (IOException e){
+            e.getMessage();
+        }
+
+    }
 
     public static HashMap<LocalDate,Reporte> leerReporte(String archivo){
         ObjectInputStream objectInputStream = null;

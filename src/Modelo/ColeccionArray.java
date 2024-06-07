@@ -30,10 +30,6 @@ public class ColeccionArray<T> implements ICRUDE<T> {
         return tArrayList.remove(t);
     }
 
-    @Override
-    public ArrayList<T> listado() {
-        return tArrayList;
-    }
 
     public boolean modificar(T objetoOriginal, T objetoModificado){
         boolean retorno = false;

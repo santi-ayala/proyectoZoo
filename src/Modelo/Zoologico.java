@@ -97,20 +97,6 @@ public class Zoologico {
     }
 
 
-    //Mostrar animales
-    public void mostrarAnimales(){
-
-     ArrayList<Animal> animales = coleccionAnimal.listado();
-
-     for(int i=0; i<animales.size();i++){
-
-         System.out.println(animales.get(i));
-
-     }
-
-    }
-
-
 
 //FUNCIONES EMPLEADO////////////////////////////////////
     public boolean marcarTareaCompletada(String tarea, Usuario empleado){

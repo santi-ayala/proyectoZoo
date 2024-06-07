@@ -53,7 +53,7 @@ public class MenuEmpleado {
                     Utils.limpiarPantalla();
                     System.out.println("Que tarea fue completada?");
                     String tarea;
-                    tarea= scanner.nextLine();
+                    tarea = scanner.nextLine();
                     boolean verificacion;
                    verificacion = zoo.marcarTareaCompletada(tarea, empleado);
 
@@ -80,8 +80,6 @@ public class MenuEmpleado {
 
                         System.out.println("No se encontro la especie");
                     }
-
-
                     break;
                 case "3":
                     Utils.limpiarPantalla();
