@@ -50,9 +50,16 @@ public class Reporte implements Serializable {
 
     @Override
     public String toString() {
+        String nombreEmpleado;
+        if (empleadoEstrella == null){
+            nombreEmpleado = "Inexistente";
+        } else {
+            nombreEmpleado = empleadoEstrella.getNombre();
+        }
+
         return "Reporte: [Fecha: " + fecha + ", Balance: $" + balance +
                 ", Animal Estrella: " + animalEstrella.getEspecie() + " (Visitas: " + animalEstrella.getCantidadVisitas() + ")" +
-                ", Empleado Estrella: " + empleadoEstrella.getNombre() +
+                ", Empleado Estrella: " + nombreEmpleado +
                 ", Cantidad de Animales Enfermos: " + animalEnfermos.size() + "]"+
                 "\n";
 

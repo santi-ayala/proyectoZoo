@@ -15,7 +15,7 @@ public class Main {
         String eleccion;
         while (x) {
             System.out.println("Hola! Bienvenido a Zoo Manager!");
-            System.out.println("1) Cargar Zoologico");
+            System.out.println("1) Iniciar Sesión");
             System.out.println("2) Crear nuevo Zoologico");
 
 
